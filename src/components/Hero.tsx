@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import profile from "/Users/priscillajosping/Desktop/College/Portfolio/Frontend/src/assets/profile.png"; // your image
+import profile from "./assets/profile.png"; // your image
 
 export default function Hero() {
   return (
