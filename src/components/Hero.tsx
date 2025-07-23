@@ -4,14 +4,17 @@ import profile from "/Users/priscillajosping/Desktop/College/Portfolio/Frontend/
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6">
-      {/* Gradient blobs */}
-      <div className="absolute w-96 h-96 bg-gradient-to-r from-cyan-300 to-blue-500 rounded-full blur-3xl opacity-50 animate-pulse top-20 left-10"></div>
-      <div className="absolute w-80 h-80 bg-gradient-to-r from-indigo-400 to-blue-600 rounded-full blur-3xl opacity-40 animate-bounce bottom-10 right-10"></div>
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f]">
+      {/* Background Decorative Patterns */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl top-[-150px] left-[-150px]" />
+        <div className="absolute w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl bottom-[-100px] right-[-150px]" />
+        <div className="absolute w-[300px] h-[300px] bg-cyan-400/5 rounded-full blur-2xl top-[200px] right-[200px]" />
+      </div>
 
       {/* Name */}
       <motion.h1
-        className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-cyan-200 via-blue-300 to-indigo-200 text-transparent bg-clip-text drop-shadow-2xl"
+        className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 text-transparent bg-clip-text drop-shadow-2xl"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -26,9 +29,9 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        Building <span className="text-cyan-300">intelligent</span> solutions with{" "}
-        <span className="text-blue-300">Machine Learning</span> and{" "}
-        <span className="text-indigo-300">Deep Learning</span> innovation.
+        Building <span className="text-purple-300">intelligent</span> solutions with{" "}
+        <span className="text-pink-300">Machine Learning</span> and{" "}
+        <span className="text-blue-300">Deep Learning</span> innovation.
       </motion.p>
 
       {/* Profile Picture */}
@@ -41,7 +44,7 @@ export default function Hero() {
         <img
           src={profile}
           alt="Priscilla Jospin G"
-          className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-cyan-300 shadow-2xl hover:scale-105 transition-transform duration-300"
+          className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)] hover:scale-105 transition-transform duration-300"
         />
       </motion.div>
 
@@ -54,7 +57,7 @@ export default function Hero() {
       >
         <a
           href="#projects"
-          className="px-8 py-3 bg-gradient-to-r from-cyan-300 to-blue-400 text-black font-semibold rounded-xl shadow-xl hover:scale-110 transition"
+          className="px-8 py-3 bg-gradient-to-r from-purple-400 to-pink-500 text-black font-semibold rounded-xl shadow-xl hover:scale-110 transition"
         >
           See My Work
         </a>
@@ -77,7 +80,7 @@ export default function Hero() {
           href="https://github.com/PriscillajospinG"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-cyan-300 transition-transform hover:scale-125"
+          className="hover:text-purple-300 transition-transform hover:scale-125"
         >
           <FaGithub />
         </a>

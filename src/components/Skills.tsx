@@ -9,7 +9,7 @@ import {
   SiMysql,
   SiTensorflow 
 } from "react-icons/si";
-import { GiArtificialIntelligence } from "react-icons/gi"; // For Transformer LLM
+import { GiArtificialIntelligence } from "react-icons/gi";
 
 const skills = [
   { name: "React", icon: <FaReact className="text-cyan-400" /> },
@@ -31,15 +31,17 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-16 bg-gradient-to-b from-blue-900 to-cyan-800 text-white text-center">
-      <h2 className="text-3xl font-bold mb-8">My Skills</h2>
+    <section id="skills" className="py-16 bg-gradient-to-b from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f] text-white text-center">
+      <h2 className="text-4xl font-extrabold mb-8 bg-gradient-to-r from-purple-400 via-pink-50 to-blue-100 bg-clip-text text-transparent">
+        My Skills
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 px-6 max-w-5xl mx-auto">
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex flex-col items-center bg-white/10 rounded-lg p-4 shadow-md hover:scale-105 transition-transform"
+            className="flex flex-col items-center bg-gradient-to-br from-white/10 to-white/5 rounded-lg p-4 shadow-md hover:scale-110 hover:shadow-purple-500/30 transition-transform duration-300"
           >
-            <div className="text-4xl mb-2">{skill.icon}</div>
+            <div className="text-4xl mb-2 drop-shadow-lg">{skill.icon}</div>
             <p className="text-sm font-medium">{skill.name}</p>
           </div>
         ))}
