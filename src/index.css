@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
+  @apply bg-gradient-to-b from-purple-900 via-pink-800 to-red-900 text-white;
   font-family: 'Inter', sans-serif;
 }

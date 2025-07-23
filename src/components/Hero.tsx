@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import profile from "/Users/priscillajosping/Desktop/College/Portfolio/Frontend/src/assets/profile.png"; // <-- Your picture
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import profile from "/Users/priscillajosping/Desktop/College/Portfolio/Frontend/src/assets/profile.png"; // your image
 
 export default function Hero() {
   return (
@@ -15,7 +16,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Priscilla Jospin
+        Priscilla Jospin G
       </motion.h1>
 
       {/* Tagline */}
@@ -25,8 +26,9 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        Crafting <span className="text-cyan-300">modern</span> and{" "}
-        <span className="text-blue-300">interactive</span> web experiences.
+        Building <span className="text-cyan-300">intelligent</span> solutions with{" "}
+        <span className="text-blue-300">Machine Learning</span> and{" "}
+        <span className="text-indigo-300">Deep Learning</span> innovation.
       </motion.p>
 
       {/* Profile Picture */}
@@ -61,6 +63,31 @@ export default function Hero() {
           className="px-8 py-3 border border-white/40 bg-white/10 backdrop-blur-md text-white rounded-xl hover:scale-110 transition"
         >
           Contact Me
+        </a>
+      </motion.div>
+
+      {/* Social Links */}
+      <motion.div
+        className="mt-6 flex gap-6 text-3xl text-white/80"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <a
+          href="https://github.com/PriscillajospinG"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-cyan-300 transition-transform hover:scale-125"
+        >
+          <FaGithub />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/priscilla-jospin-g-a52799295/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-400 transition-transform hover:scale-125"
+        >
+          <FaLinkedin />
         </a>
       </motion.div>
     </section>
