@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import project1 from "../assets/1.png";
 
 const projects = [
   {
@@ -12,8 +13,8 @@ const projects = [
     title: "Portfolio Website",
     description: "A modern personal portfolio built with React, Tailwind CSS, and Framer Motion.",
     tech: ["React", "Tailwind", "Framer Motion"],
-    image: "https://via.placeholder.com/400x250",
-    link: "#",
+    image: project1,
+    link: "https://github.com/PriscillajospinG/upgraded-port.git",
   },
   {
     title: "Machine Learning Model",
