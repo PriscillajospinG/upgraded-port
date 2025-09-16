@@ -1,29 +1,116 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import { FaCode, FaBrain, FaRocket } from 'react-icons/fa';
 
 export default function About() {
+  const highlights = [
+    {
+      icon: <FaCode className="w-8 h-8" />,
+      title: 'Full Stack Development',
+      description:
+        'Building scalable web applications with modern frameworks and best practices',
+    },
+    {
+      icon: <FaBrain className="w-8 h-8" />,
+      title: 'Machine Learning',
+      description:
+        'Developing intelligent systems using deep learning and AI technologies',
+    },
+    {
+      icon: <FaRocket className="w-8 h-8" />,
+      title: 'Innovation Focus',
+      description:
+        'Creating solutions that bridge the gap between technology and real-world impact',
+    },
+  ];
+
   return (
-    <section className="py-20 relative z-10 px-6 text-center bg-gradient-to-b from-[#0a0a0f] via-[#141426] to-[#0a0a0f]">
-      <motion.h2
-        className="text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-400 text-transparent bg-clip-text mb-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        About Me
-      </motion.h2>
-      <motion.p
-        className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-300"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        I'm <span className="text-cyan-300 font-semibold">Priscilla Jospin</span>, a passionate{" "}
-        <span className="text-blue-300">Fullstack Developer</span> and{" "}
-        <span className="text-purple-300">Machine Learning Engineer</span> with a love for
-        crafting modern, responsive, and interactive user experiences.  
-        My goal is to bring creative designs to life using the latest web technologies  
-        and to build intelligent models that create real-world impact.
-      </motion.p>
+    <section id="about" className="py-24 relative z-10 px-6 bg-slate-800/50">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            About Me
+          </h2>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
+          <motion.div
+            className="space-y-6"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-lg leading-relaxed text-slate-300">
+              I'm{' '}
+              <span className="text-blue-400 font-semibold">
+                Priscilla Jospin G
+              </span>
+              , a dedicated{' '}
+              <span className="text-emerald-400 font-semibold">
+                Machine Learning Engineer
+              </span>{' '}
+              and{' '}
+              <span className="text-purple-400 font-semibold">
+                Full Stack Developer
+              </span>{' '}
+              passionate about creating intelligent solutions that make a
+              difference.
+            </p>
+            <p className="text-lg leading-relaxed text-slate-300">
+              With expertise in both cutting-edge AI technologies and modern web
+              development, I bridge the gap between complex algorithms and
+              user-friendly applications. My approach combines technical
+              excellence with creative problem-solving to deliver impactful
+              solutions.
+            </p>
+            <p className="text-lg leading-relaxed text-slate-300">
+              I believe in continuous learning and staying at the forefront of
+              technology to build systems that not only solve current challenges
+              but also anticipate future needs.
+            </p>
+          </motion.div>
+
+          {/* Highlights Cards */}
+          <motion.div
+            className="space-y-6"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {highlights.map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-slate-700/50 backdrop-blur-sm border border-slate-600/50 rounded-xl p-6 hover:bg-slate-700/70 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="text-blue-400 mt-1">{item.icon}</div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-300 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
