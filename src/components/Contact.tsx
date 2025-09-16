@@ -159,9 +159,8 @@ export default function Contact() {
                 Send Email
               </a>
               <a
-                href="Frontend/src/assets/Priscilla - Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/Priscilla-Resume.pdf"
+                download="Priscilla-Jospin-Resume.pdf"
                 className="w-full inline-block text-center px-8 py-4 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold rounded-lg transition-all duration-300"
               >
                 Download Resume

@@ -97,9 +97,8 @@ export default function Hero() {
             Get In Touch
           </a>
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Priscilla-Resume.pdf"
+            download="Priscilla-Jospin-Resume.pdf"
             className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-all duration-300 flex items-center gap-2"
           >
             <FaDownload className="w-4 h-4" />
