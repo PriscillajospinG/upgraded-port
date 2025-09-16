@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // VERY IMPORTANT for Netlify
 
   // Build optimizations
   build: {
@@ -23,14 +22,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
 
     // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-      mangle: true,
-    },
+    minify: 'esbuild',
 
     // Generate source maps for production debugging
     sourcemap: false,
