@@ -1,27 +1,30 @@
-import { motion } from "framer-motion";
-import project1 from "../assets/1.png";
+import { motion } from 'framer-motion';
+import project1 from '../assets/1.png';
+import project2 from '../assets/2.png';
 
 const projects = [
   {
-    title: "AI Chatbot",
-    description: "An AI-powered chatbot using OpenAI API with React and Node.js.",
-    tech: ["React", "Node.js", "Tailwind", "OpenAI"],
-    image: "https://via.placeholder.com/400x250", // Replace with your actual image
-    link: "https://github.com/your-repo",
+    title: 'IEEE Paper Generator',
+    description: 'A website where you can generate and format IEEE papers',
+    tech: ['React', 'Node.js', 'Tailwind', 'OpenAI'],
+    image: project2,
+    link: 'https://github.com/PriscillajospinG/backend-research-paper-agent/tree/test_backend',
   },
   {
-    title: "Portfolio Website",
-    description: "A modern personal portfolio built with React, Tailwind CSS, and Framer Motion.",
-    tech: ["React", "Tailwind", "Framer Motion"],
+    title: 'Portfolio Website',
+    description:
+      'A modern personal portfolio built with React, Tailwind CSS, and Framer Motion.',
+    tech: ['React', 'Tailwind', 'Framer Motion'],
     image: project1,
-    link: "https://github.com/PriscillajospinG/upgraded-port.git",
+    link: 'https://github.com/PriscillajospinG/upgraded-port',
   },
   {
-    title: "Machine Learning Model",
-    description: "A deep learning image classifier using TensorFlow and Python.",
-    tech: ["TensorFlow", "Python", "Flask"],
-    image: "https://via.placeholder.com/400x250",
-    link: "#",
+    title: 'Machine Learning Model',
+    description:
+      'A deep learning image classifier using TensorFlow and Python.',
+    tech: ['TensorFlow', 'Python', 'Flask'],
+    image: 'https://via.placeholder.com/400x250',
+    link: 'https://github.com/PriscillajospinG',
   },
 ];
 
@@ -38,10 +41,11 @@ export default function Projects() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl overflow-hidden shadow-md hover:scale-105 hover:shadow-purple-500/30 transition-transform duration-300"
+            className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl overflow-hidden shadow-md hover:scale-105 hover:shadow-purple-500/30 transition-transform duration-300 relative"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2 }}
+            style={{ pointerEvents: 'auto' }}
           >
             <img
               src={project.image}
@@ -52,9 +56,11 @@ export default function Projects() {
               <h3 className="text-xl font-semibold text-purple-300">
                 {project.title}
               </h3>
-              <p className="text-white/80 text-sm mt-2">{project.description}</p>
+              <p className="text-white/80 text-sm mt-2">
+                {project.description}
+              </p>
               <div className="flex flex-wrap gap-2 mt-3">
-                {project.tech.map((t) => (
+                {project.tech.map(t => (
                   <span
                     key={t}
                     className="px-2 py-1 bg-purple-600/30 rounded text-xs text-purple-200"
@@ -63,13 +69,14 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-              <a
-                href={project.link}
-                target="_blank"
-                className="inline-block mt-4 px-4 py-2 bg-gradient-to-r from-purple-400 to-blue-500 text-black rounded-lg font-medium hover:scale-105 transition"
+              <button
+                onClick={() =>
+                  window.open(project.link, '_blank', 'noopener,noreferrer')
+                }
+                className="inline-block mt-4 px-4 py-2 bg-gradient-to-r from-purple-400 to-blue-500 text-white font-medium rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer z-10 relative border-none"
               >
                 View Project
-              </a>
+              </button>
             </div>
           </motion.div>
         ))}
