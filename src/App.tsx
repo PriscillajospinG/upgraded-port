@@ -1,6 +1,6 @@
 import Hero from './components/Hero';
 import About from './components/About';
-import StatsSection from './components/StatsSection';
+
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -25,7 +25,6 @@ export default function App() {
       <main id="main-content" role="main">
         <Hero />
         <About />
-        <StatsSection />
         <Skills />
         <Projects />
         <Contact />

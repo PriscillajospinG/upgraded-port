@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion';
-import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaJava } from 'react-icons/fa';
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaGitAlt,
+  FaDocker,
+} from 'react-icons/fa';
 import {
   SiTailwindcss,
   SiTypescript,
@@ -8,83 +14,118 @@ import {
   SiNextdotjs,
   SiPostgresql,
   SiTensorflow,
+  SiKeras,
+  SiOpencv,
+  SiScikitlearn,
 } from 'react-icons/si';
 import { GiArtificialIntelligence } from 'react-icons/gi';
 
-const skillCategories = [
+const skills = [
+  // Full Stack
   {
-    title: 'Frontend Development',
-    skills: [
-      { name: 'React', icon: <FaReact className="text-cyan-400" />, level: 90 },
-      {
-        name: 'TypeScript',
-        icon: <SiTypescript className="text-blue-500" />,
-        level: 85,
-      },
-      {
-        name: 'Tailwind CSS',
-        icon: <SiTailwindcss className="text-sky-400" />,
-        level: 88,
-      },
-      {
-        name: 'Next.js',
-        icon: <SiNextdotjs className="text-white" />,
-        level: 82,
-      },
-    ],
+    name: 'React',
+    icon: <FaReact />,
+    category: 'fullstack',
+    color: 'text-cyan-400',
   },
   {
-    title: 'Backend Development',
-    skills: [
-      {
-        name: 'Node.js',
-        icon: <FaNodeJs className="text-green-500" />,
-        level: 85,
-      },
-      {
-        name: 'Python',
-        icon: <FaPython className="text-yellow-400" />,
-        level: 92,
-      },
-      { name: 'Java', icon: <FaJava className="text-red-500" />, level: 80 },
-    ],
+    name: 'Next.js',
+    icon: <SiNextdotjs />,
+    category: 'fullstack',
+    color: 'text-white',
   },
   {
-    title: 'Machine Learning & AI',
-    skills: [
-      {
-        name: 'TensorFlow',
-        icon: <SiTensorflow className="text-orange-300" />,
-        level: 88,
-      },
-      {
-        name: 'Transformer LLM',
-        icon: <GiArtificialIntelligence className="text-purple-400" />,
-        level: 85,
-      },
-    ],
+    name: 'TypeScript',
+    icon: <SiTypescript />,
+    category: 'fullstack',
+    color: 'text-blue-500',
   },
   {
-    title: 'Database & Tools',
-    skills: [
-      {
-        name: 'MongoDB',
-        icon: <SiMongodb className="text-green-600" />,
-        level: 85,
-      },
-      {
-        name: 'PostgreSQL',
-        icon: <SiPostgresql className="text-blue-400" />,
-        level: 82,
-      },
-      {
-        name: 'Git',
-        icon: <FaGitAlt className="text-orange-500" />,
-        level: 90,
-      },
-      { name: 'Figma', icon: <SiFigma className="text-pink-400" />, level: 78 },
-    ],
+    name: 'Tailwind CSS',
+    icon: <SiTailwindcss />,
+    category: 'fullstack',
+    color: 'text-sky-400',
   },
+  {
+    name: 'Node.js',
+    icon: <FaNodeJs />,
+    category: 'fullstack',
+    color: 'text-green-500',
+  },
+  {
+    name: 'Python',
+    icon: <FaPython />,
+    category: 'fullstack',
+    color: 'text-yellow-400',
+  },
+
+  // Database
+  {
+    name: 'MongoDB',
+    icon: <SiMongodb />,
+    category: 'database',
+    color: 'text-green-600',
+  },
+  {
+    name: 'PostgreSQL',
+    icon: <SiPostgresql />,
+    category: 'database',
+    color: 'text-blue-400',
+  },
+
+  // AI & Machine Learning
+  {
+    name: 'TensorFlow',
+    icon: <SiTensorflow />,
+    category: 'ai',
+    color: 'text-orange-400',
+  },
+  { name: 'Keras', icon: <SiKeras />, category: 'ai', color: 'text-red-500' },
+  {
+    name: 'OpenCV',
+    icon: <SiOpencv />,
+    category: 'ai',
+    color: 'text-blue-300',
+  },
+  {
+    name: 'Scikit-learn',
+    icon: <SiScikitlearn />,
+    category: 'ai',
+    color: 'text-orange-600',
+  },
+  {
+    name: 'LLM',
+    icon: <GiArtificialIntelligence />,
+    category: 'ai',
+    color: 'text-purple-400',
+  },
+
+  // Tools
+  {
+    name: 'Git',
+    icon: <FaGitAlt />,
+    category: 'tools',
+    color: 'text-orange-500',
+  },
+  {
+    name: 'Docker',
+    icon: <FaDocker />,
+    category: 'tools',
+    color: 'text-blue-600',
+  },
+  {
+    name: 'Figma',
+    icon: <SiFigma />,
+    category: 'tools',
+    color: 'text-pink-400',
+  },
+];
+
+const categories = [
+  { id: 'fullstack', label: 'Full Stack', icon: '💻' },
+  { id: 'database', label: 'Database', icon: '🗄️' },
+  { id: 'ai', label: 'AI & ML', icon: '🤖' },
+  { id: 'tools', label: 'Tools', icon: '🛠️' },
 ];
 
 export default function Skills() {
@@ -117,64 +158,77 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              className="group glass-effect rounded-2xl p-8 hover:border-blue-400/80 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-            >
-              <h3 className="text-xl font-bold text-blue-300 mb-6 text-center group-hover:text-blue-200 transition-colors">
-                {category.title}
-              </h3>
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    className="group/skill"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="text-2xl transform group-hover/skill:scale-110 transition-transform duration-300">
-                          {skill.icon}
-                        </div>
-                        <span className="text-slate-200 font-semibold group-hover/skill:text-white transition-colors">
-                          {skill.name}
-                        </span>
+        {/* Category-based layout */}
+        <div className="space-y-16">
+          {categories.map((category, categoryIndex) => {
+            const categorySkills = skills.filter(
+              skill => skill.category === category.id
+            );
+
+            return (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-3xl">{category.icon}</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-blue-300">
+                    {category.label}
+                  </h3>
+                  <div className="flex-grow h-0.5 bg-gradient-to-r from-blue-500/20 to-transparent" />
+                </div>
+
+                {/* Icon Grid */}
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+                  {categorySkills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      className="group"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                      }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: 1.15 }}
+                    >
+                      <div className="flex flex-col items-center">
+                        {/* Icon Container */}
+                        <motion.div
+                          className="w-16 h-16 md:w-20 md:h-20 glass-effect rounded-2xl flex items-center justify-center mb-3 group-hover:border-blue-400/80 transition-all duration-300 cursor-pointer"
+                          whileHover={{
+                            boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
+                          }}
+                        >
+                          <div
+                            className={`text-4xl md:text-5xl ${skill.color} transform group-hover:scale-110 transition-transform duration-300`}
+                          >
+                            {skill.icon}
+                          </div>
+                        </motion.div>
+
+                        {/* Skill Name Tooltip */}
+                        <motion.div
+                          className="text-center"
+                          initial={{ opacity: 0, y: 5 }}
+                          whileHover={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <p className="text-xs md:text-sm font-semibold text-slate-200 group-hover:text-blue-300 transition-colors truncate max-w-[70px]">
+                            {skill.name}
+                          </p>
+                        </motion.div>
                       </div>
-                      <span className="text-xs font-bold text-blue-300">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-slate-700/50 rounded-full h-2.5 overflow-hidden">
-                      <motion.div
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full shadow-lg shadow-blue-500/50"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{
-                          duration: 1.5,
-                          delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                          ease: 'easeOut',
-                        }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
