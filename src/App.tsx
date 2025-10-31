@@ -4,10 +4,15 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
-    <div className="relative bg-slate-900 min-h-screen text-white">
+    <div className="relative bg-black min-h-screen text-white scroll-smooth">
+      <Navbar />
+      <ScrollToTop />
+
       {/* Skip to main content link for accessibility */}
       <a
         href="#main-content"
@@ -15,11 +20,6 @@ export default function App() {
       >
         Skip to main content
       </a>
-
-      {/* Professional background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]" aria-hidden="true">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(59,130,246,0.1)_49%,rgba(59,130,246,0.1)_51%,transparent_52%)] bg-[length:60px_60px]" />
-      </div>
 
       <main id="main-content" role="main">
         <Hero />

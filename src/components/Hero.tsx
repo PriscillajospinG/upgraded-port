@@ -5,15 +5,35 @@ import profile from '../assets/profile.png';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-gradient-to-br from-black via-slate-900 to-black">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 -left-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse animation-delay-2000" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_60%)]" />
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-black pt-20"
+    >
+      {/* Animated gradient orbs background */}
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <motion.div
+          className="absolute top-0 -left-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl"
+          animate={{ y: [0, 50, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -bottom-1/4 right-0 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"
+          animate={{ y: [0, -50, 0] }}
+          transition={{ duration: 8, repeat: Infinity, delay: 2 }}
+        />
+        <motion.div
+          className="absolute top-1/3 left-1/4 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl"
+          animate={{ x: [0, 100, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <motion.div
+        className="relative z-10 max-w-5xl mx-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ staggerChildren: 0.2, delayChildren: 0.3 }}
+      >
         {/* Professional Introduction */}
         <motion.div
           className="mb-8"
@@ -143,7 +163,7 @@ export default function Hero() {
         >
           <HiChevronDown className="w-6 h-6 text-slate-400 animate-bounce" />
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
