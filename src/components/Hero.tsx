@@ -65,6 +65,19 @@ export default function Hero() {
             className="text-left lg:text-left"
             variants={containerVariants}
           >
+            {/* Verse Badge */}
+            <motion.div
+              className="flex justify-center mb-8"
+              variants={textVariants}
+            >
+              <div className="px-4 py-2 border border-blue-500/50 rounded-full bg-blue-500/10 backdrop-blur-sm text-center max-w-2xl">
+                <p className="text-sm font-semibold text-blue-300 leading-relaxed">
+                  Blessed be the name of God forever and ever, for wisdom and
+                  power belong to Him - Daniel 2:20
+                </p>
+              </div>
+            </motion.div>
+
             {/* Main Title with gradient */}
             <motion.h1
               className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight"

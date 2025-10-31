@@ -1,6 +1,5 @@
 import Hero from './components/Hero';
 import About from './components/About';
-import Verse from './components/Verse';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -23,7 +22,6 @@ export default function App() {
       </a>
 
       <main id="main-content" role="main">
-        <Verse />
         <Hero />
         <About />
         <Skills />
