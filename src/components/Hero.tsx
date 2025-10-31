@@ -1,167 +1,211 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiChevronDown } from 'react-icons/hi';
 import profile from '../assets/profile.png';
 
 export default function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   return (
     <section
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-black pt-20"
     >
-      {/* Animated gradient orbs background */}
+      {/* Animated grid background */}
       <div className="absolute inset-0 overflow-hidden -z-10">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24%,rgba(59,130,246,.05)_25%,rgba(59,130,246,.05)_26%,transparent_27%,transparent_74%,rgba(59,130,246,.05)_75%,rgba(59,130,246,.05)_76%,transparent_77%,transparent),linear-gradient(0deg,transparent_24%,rgba(59,130,246,.05)_25%,rgba(59,130,246,.05)_26%,transparent_27%,transparent_74%,rgba(59,130,246,.05)_75%,rgba(59,130,246,.05)_76%,transparent_77%,transparent)] bg-[length:50px_50px]" />
+
+        {/* Animated gradient spheres */}
         <motion.div
-          className="absolute top-0 -left-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl"
-          animate={{ y: [0, 50, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-blue-600/20 to-purple-600/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 30, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -bottom-1/4 right-0 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"
-          animate={{ y: [0, -50, 0] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-        />
-        <motion.div
-          className="absolute top-1/3 left-1/4 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl"
-          animate={{ x: [0, 100, 0] }}
-          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-l from-cyan-600/20 to-pink-600/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -30, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 1,
+          }}
         />
       </div>
 
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ staggerChildren: 0.2, delayChildren: 0.3 }}
+        className="relative z-10 max-w-6xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        {/* Professional Introduction */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-blue-400 text-sm font-medium tracking-wide uppercase mb-2">
-            Machine Learning Engineer & Full Stack Developer
-          </p>
+        {/* Badge */}
+        <motion.div className="inline-block mb-8" variants={textVariants}>
+          <div className="px-4 py-2 border border-blue-500/50 rounded-full bg-blue-500/10 backdrop-blur-sm">
+            <p className="text-sm font-semibold text-blue-300">
+              Blessed be the name of God forever and ever, for wisdom and power
+              belong to Him - Daniel 2:20
+            </p>
+          </div>
         </motion.div>
 
-        {/* Name */}
+        {/* Main Title with gradient */}
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight"
+          variants={textVariants}
         >
-          Priscilla Jospin G
+          <span className="block text-white">Priscilla</span>
+          <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent">
+            Jospin G
+          </span>
         </motion.h1>
 
-        {/* Professional Tagline */}
+        {/* Subtitle with typing effect */}
         <motion.p
-          className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto mb-8 leading-relaxed font-medium"
+          variants={textVariants}
         >
-          Crafting{' '}
-          <span className="text-blue-400 font-semibold">
-            intelligent solutions
-          </span>{' '}
-          through advanced{' '}
-          <span className="text-emerald-400 font-semibold">
-            Machine Learning
-          </span>{' '}
-          and modern{' '}
-          <span className="text-purple-400 font-semibold">
-            Web Technologies
-          </span>
+          Building intelligent systems with{' '}
+          <span className="text-cyan-400 font-bold">ML</span> &{' '}
+          <span className="text-purple-400 font-bold">Full-Stack</span>{' '}
+          expertise
         </motion.p>
 
-        {/* Profile Picture - Professional Style */}
+        {/* Stats row */}
         <motion.div
-          className="mb-10"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          className="flex flex-wrap justify-center gap-8 mb-12"
+          variants={textVariants}
         >
+          <div className="group">
+            <p className="text-3xl font-bold text-blue-400">50+</p>
+            <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+              Projects
+            </p>
+          </div>
+          <div className="w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+          <div className="group">
+            <p className="text-3xl font-bold text-purple-400">2+</p>
+            <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+              Years Exp
+            </p>
+          </div>
+          <div className="w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+          <div className="group">
+            <p className="text-3xl font-bold text-pink-400">20+</p>
+            <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+              Technologies
+            </p>
+          </div>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+          variants={textVariants}
+        >
+          <motion.a
+            href="#projects"
+            className="group relative px-8 py-3 font-semibold text-white overflow-hidden rounded-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50" />
+            <span className="relative">View My Work</span>
+          </motion.a>
+
+          <motion.a
+            href="#contact"
+            className="group px-8 py-3 font-semibold text-white border-2 border-slate-600 rounded-lg hover:border-blue-500/80 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get in Touch
+          </motion.a>
+        </motion.div>
+
+        {/* Profile Image Section */}
+        <motion.div className="relative mb-12" variants={textVariants}>
           <div className="relative inline-block">
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
+            {/* Animated border */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              animate={{
+                boxShadow: [
+                  '0 0 20px rgba(59, 130, 246, 0.3)',
+                  '0 0 40px rgba(168, 85, 247, 0.5)',
+                  '0 0 20px rgba(59, 130, 246, 0.3)',
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
               <img
                 src={profile}
-                alt="Priscilla Jospin G - Professional Photo"
-                className="w-full h-full rounded-full object-cover border-4 border-slate-800 shadow-2xl"
+                alt="Priscilla Jospin"
+                className="w-full h-full rounded-full object-cover"
               />
-            </div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-emerald-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
-              <div className="w-3 h-3 bg-white rounded-full"></div>
             </div>
           </div>
         </motion.div>
 
-        {/* Professional Action Buttons */}
+        {/* Social Links */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex gap-4 justify-center"
+          variants={textVariants}
         >
-          <a
-            href="#projects"
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            View My Work
-          </a>
-          <a
-            href="#contact"
-            className="px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold rounded-lg transition-all duration-300"
-          >
-            Get In Touch
-          </a>
-          <a
-            href="/Priscilla-Resume.pdf"
-            download="Priscilla-Jospin-Resume.pdf"
-            className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-all duration-300 flex items-center gap-2"
-          >
-            <FaDownload className="w-4 h-4" />
-            Resume
-          </a>
-        </motion.div>
-
-        {/* Professional Social Links */}
-        <motion.div
-          className="flex gap-6 justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-        >
-          <a
-            href="https://github.com/PriscillajospinG"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-12 h-12 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 hover:scale-110"
-            aria-label="GitHub Profile"
-          >
-            <FaGithub className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/priscilla-jospin-g-a52799295/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-12 h-12 bg-slate-800 hover:bg-blue-600 rounded-full flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 hover:scale-110"
-            aria-label="LinkedIn Profile"
-          >
-            <FaLinkedin className="w-5 h-5" />
-          </a>
+          {[
+            {
+              icon: FaGithub,
+              href: 'https://github.com/PriscillajospinG',
+              label: 'GitHub',
+            },
+            {
+              icon: FaLinkedin,
+              href: 'https://www.linkedin.com/in/priscilla-jospin-g-a52799295/',
+              label: 'LinkedIn',
+            },
+          ].map((social, index) => (
+            <motion.a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full border border-slate-600 flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-400 transition-all duration-300"
+              whileHover={{ scale: 1.2, y: -5 }}
+              aria-label={social.label}
+            >
+              <social.icon className="w-5 h-5" />
+            </motion.a>
+          ))}
         </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
-          <HiChevronDown className="w-6 h-6 text-slate-400 animate-bounce" />
+          <HiChevronDown className="w-6 h-6 text-slate-600" />
         </motion.div>
       </motion.div>
     </section>
