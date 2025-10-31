@@ -15,7 +15,7 @@
   }
 
   .glass-effect-premium {
-    @apply bg-white/8 backdrop-blur-2xl border border-white/15 shadow-2xl shadow-black/30;
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-black/30;
   }
 
   .gradient-text {
