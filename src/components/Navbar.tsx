@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-slate-700/30"
+      className="fixed top-0 w-full z-50 glass-effect-strong border-b border-blue-400/20"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -56,7 +56,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <motion.div
-        className="md:hidden bg-black/80 backdrop-blur-lg border-t border-slate-700/30"
+        className="md:hidden glass-effect-strong border-t border-blue-400/20"
         initial={{ height: 0 }}
         animate={{ height: isOpen ? 'auto' : 0 }}
         transition={{ duration: 0.3 }}
