@@ -95,7 +95,7 @@ export default function Hero() {
               variants={textVariants}
             >
               Building intelligent systems with{' '}
-              <span className="text-cyan-400 font-bold">ML</span> &{' '}
+              <span className="text-cyan-400 font-bold">AI</span> &{' '}
               <span className="text-purple-400 font-bold">Full-Stack</span>{' '}
               expertise
             </motion.p>
