@@ -9,10 +9,6 @@ export default function Footer() {
           </span>{' '}
           ❤️ All rights reserved.
         </p>
-        <p className="text-xs text-slate-500 mt-3">
-          Crafted with modern web technologies • React • TypeScript • Tailwind
-          CSS • Framer Motion
-        </p>
       </div>
     </footer>
   );
