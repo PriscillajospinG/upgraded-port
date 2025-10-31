@@ -89,8 +89,17 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section
+      id="skills"
+      className="py-24 relative bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -98,34 +107,35 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
             Technical Skills
           </h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
             A comprehensive toolkit for building modern applications and
             intelligent systems
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6"
+              className="group glass-effect rounded-2xl p-8 hover:border-blue-400/80 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ y: -4 }}
             >
-              <h3 className="text-xl font-semibold text-white mb-6 text-center">
+              <h3 className="text-xl font-bold text-blue-300 mb-6 text-center group-hover:text-blue-200 transition-colors">
                 {category.title}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
-                    className="group"
+                    className="group/skill"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{
@@ -134,25 +144,28 @@ export default function Skills() {
                     }}
                     viewport={{ once: true }}
                   >
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-3">
-                        <div className="text-2xl">{skill.icon}</div>
-                        <span className="text-slate-300 font-medium">
+                        <div className="text-2xl transform group-hover/skill:scale-110 transition-transform duration-300">
+                          {skill.icon}
+                        </div>
+                        <span className="text-slate-200 font-semibold group-hover/skill:text-white transition-colors">
                           {skill.name}
                         </span>
                       </div>
-                      <span className="text-sm text-slate-400">
+                      <span className="text-xs font-bold text-blue-300">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
+                    <div className="w-full bg-slate-700/50 rounded-full h-2.5 overflow-hidden">
                       <motion.div
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full shadow-lg shadow-blue-500/50"
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{
                           duration: 1.5,
                           delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                          ease: 'easeOut',
                         }}
                         viewport={{ once: true }}
                       />

@@ -24,8 +24,17 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 relative z-10 px-6 bg-slate-800/50">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="about"
+      className="py-24 relative bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -33,10 +42,10 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -48,30 +57,30 @@ export default function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg leading-relaxed text-slate-300">
+            <p className="text-lg leading-relaxed text-slate-300 hover:text-slate-100 transition-colors">
               I'm{' '}
-              <span className="text-blue-400 font-semibold">
+              <span className="text-blue-300 font-semibold">
                 Priscilla Jospin G
               </span>
               , a dedicated{' '}
-              <span className="text-emerald-400 font-semibold">
+              <span className="text-emerald-300 font-semibold">
                 Machine Learning Engineer
               </span>{' '}
               and{' '}
-              <span className="text-purple-400 font-semibold">
+              <span className="text-purple-300 font-semibold">
                 Full Stack Developer
               </span>{' '}
               passionate about creating intelligent solutions that make a
               difference.
             </p>
-            <p className="text-lg leading-relaxed text-slate-300">
+            <p className="text-lg leading-relaxed text-slate-300 hover:text-slate-100 transition-colors">
               With expertise in both cutting-edge AI technologies and modern web
               development, I bridge the gap between complex algorithms and
               user-friendly applications. My approach combines technical
               excellence with creative problem-solving to deliver impactful
               solutions.
             </p>
-            <p className="text-lg leading-relaxed text-slate-300">
+            <p className="text-lg leading-relaxed text-slate-300 hover:text-slate-100 transition-colors">
               I believe in continuous learning and staying at the forefront of
               technology to build systems that not only solve current challenges
               but also anticipate future needs.
@@ -89,19 +98,22 @@ export default function About() {
             {highlights.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-slate-700/50 backdrop-blur-sm border border-slate-600/50 rounded-xl p-6 hover:bg-slate-700/70 transition-all duration-300"
+                className="group glass-effect rounded-xl p-6 hover:border-blue-400/80 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 viewport={{ once: true }}
+                whileHover={{ y: -4 }}
               >
                 <div className="flex items-start space-x-4">
-                  <div className="text-blue-400 mt-1">{item.icon}</div>
+                  <div className="text-blue-400 mt-1 transform group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
+                    <h3 className="text-lg font-semibold text-blue-300 group-hover:text-blue-200 transition-colors mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-slate-300 leading-relaxed">
+                    <p className="text-slate-300 text-sm leading-relaxed">
                       {item.description}
                     </p>
                   </div>

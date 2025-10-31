@@ -5,11 +5,12 @@ import profile from '../assets/profile.png';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(59,130,246,0.03)_49%,rgba(59,130,246,0.03)_51%,transparent_52%)] bg-[length:20px_20px]" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-gradient-to-br from-black via-slate-900 to-black">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 -left-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse animation-delay-2000" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_60%)]" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto">
