@@ -55,7 +55,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="group glass-effect rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-blue-400/60 flex flex-col h-full"
+              className="group glass-effect-strong rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-blue-400/60 flex flex-col h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}

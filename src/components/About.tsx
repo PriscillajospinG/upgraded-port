@@ -69,7 +69,7 @@ export default function About() {
             return (
               <motion.div
                 key={index}
-                className="group relative overflow-hidden rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 p-6 transition-all duration-300"
+                className="group relative overflow-hidden rounded-2xl glass-effect-premium hover:border-blue-400/50 p-6 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}

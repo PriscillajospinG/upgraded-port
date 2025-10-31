@@ -93,7 +93,7 @@ export default function Skills() {
               <div className="flex flex-col items-center">
                 {/* Icon Container */}
                 <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 glass-effect rounded-2xl flex items-center justify-center mb-3 group-hover:border-blue-400/80 transition-all duration-300 cursor-pointer"
+                  className="w-16 h-16 md:w-20 md:h-20 glass-effect-strong rounded-2xl flex items-center justify-center mb-3 group-hover:border-blue-400/80 transition-all duration-300 cursor-pointer"
                   whileHover={{
                     boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
                   }}

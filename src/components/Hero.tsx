@@ -70,7 +70,7 @@ export default function Hero() {
               className="flex justify-center mb-8"
               variants={textVariants}
             >
-              <div className="px-4 py-2 border border-blue-500/50 rounded-full bg-blue-500/10 backdrop-blur-sm text-center max-w-2xl">
+              <div className="px-4 py-2 rounded-full glass-effect-strong text-center max-w-2xl border-blue-500/40 hover:border-blue-400/60 transition-all">
                 <p className="text-sm font-semibold text-blue-300 leading-relaxed">
                   Blessed be the name of God forever and ever, for wisdom and
                   power belong to Him - Daniel 2:20

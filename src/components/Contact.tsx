@@ -90,7 +90,7 @@ export default function Contact() {
                 {contactInfo.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="group glass-effect rounded-lg p-4 hover:border-blue-400/80 transition-all duration-300"
+                    className="group glass-effect-strong rounded-lg p-4 hover:border-blue-400/80 transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -135,7 +135,7 @@ export default function Contact() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 glass-effect rounded-full flex items-center justify-center text-slate-300 hover:text-blue-300 border-blue-400/40 hover:border-blue-400/80 transition-all duration-300 hover:scale-110"
+                    className="w-14 h-14 glass-effect-strong rounded-full flex items-center justify-center text-slate-300 hover:text-blue-300 border-blue-400/40 hover:border-blue-400/80 transition-all duration-300 hover:scale-110"
                     aria-label={social.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -151,7 +151,7 @@ export default function Contact() {
 
           {/* CTA Section */}
           <motion.div
-            className="glass-effect rounded-2xl p-8 hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-center"
+            className="glass-effect-strong rounded-2xl p-8 hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-center"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
