@@ -23,17 +23,9 @@ import {
 import { GiArtificialIntelligence, GiRobotGrab } from 'react-icons/gi';
 
 const skills = [
-  { name: 'React', icon: <FaReact />, color: 'text-cyan-400' },
-
-  { name: 'Next.js', icon: <SiNextdotjs />, color: 'text-white' },
-  { name: 'TypeScript', icon: <SiTypescript />, color: 'text-blue-500' },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: 'text-sky-400' },
-  { name: 'Node.js', icon: <FaNodeJs />, color: 'text-green-500' },
   { name: 'Python', icon: <FaPython />, color: 'text-yellow-400' },
   { name: 'Java', icon: <FaJava />, color: 'text-red-600' },
-  { name: 'MongoDB', icon: <SiMongodb />, color: 'text-green-600' },
-  { name: 'PostgreSQL', icon: <SiPostgresql />, color: 'text-blue-400' },
-  { name: 'Figma', icon: <SiFigma />, color: 'text-pink-400' },
+  { name: 'React', icon: <FaReact />, color: 'text-cyan-400' },
   { name: 'TensorFlow', icon: <SiTensorflow />, color: 'text-orange-400' },
   { name: 'Keras', icon: <SiKeras />, color: 'text-red-500' },
   { name: 'OpenCV', icon: <SiOpencv />, color: 'text-blue-300' },
@@ -44,6 +36,13 @@ const skills = [
   { name: 'MCP', icon: <GiArtificialIntelligence />, color: 'text-cyan-500' },
   { name: 'Git', icon: <FaGitAlt />, color: 'text-orange-500' },
   { name: 'Docker', icon: <FaDocker />, color: 'text-blue-600' },
+  { name: 'Next.js', icon: <SiNextdotjs />, color: 'text-white' },
+  { name: 'TypeScript', icon: <SiTypescript />, color: 'text-blue-500' },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: 'text-sky-400' },
+  { name: 'Node.js', icon: <FaNodeJs />, color: 'text-green-500' },
+  { name: 'MongoDB', icon: <SiMongodb />, color: 'text-green-600' },
+  { name: 'PostgreSQL', icon: <SiPostgresql />, color: 'text-blue-400' },
+  { name: 'Figma', icon: <SiFigma />, color: 'text-pink-400' },
 ];
 
 export default function Skills() {
