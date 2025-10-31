@@ -49,12 +49,12 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 relative bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden"
+      className="py-24 relative bg-gradient-to-b from-black via-slate-950 to-black text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -93,7 +93,7 @@ export default function Skills() {
               <div className="flex flex-col items-center">
                 {/* Icon Container */}
                 <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 glass-effect rounded-2xl flex items-center justify-center mb-3 group-hover:border-blue-400/80 transition-all duration-300 cursor-pointer"
+                  className="w-16 h-16 md:w-20 md:h-20 glass-effect-strong rounded-2xl flex items-center justify-center mb-3 group-hover:border-blue-400/80 transition-all duration-300 cursor-pointer"
                   whileHover={{
                     boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
                   }}

@@ -32,12 +32,12 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 relative bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden"
+      className="py-20 relative bg-gradient-to-b from-black via-slate-950 to-black text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -55,7 +55,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="group glass-effect rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-blue-400/60 flex flex-col h-full"
+              className="group glass-effect-strong rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-blue-400/60 flex flex-col h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
