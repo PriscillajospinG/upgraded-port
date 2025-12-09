@@ -67,11 +67,11 @@ export default function Hero() {
           >
             {/* Verse Badge */}
             <motion.div
-              className="flex justify-center mb-8"
+              className="flex justify-center mb-8 overflow-x-auto w-full"
               variants={textVariants}
             >
-              <div className="px-4 py-2 rounded-full glass-effect-strong text-center max-w-2xl border-blue-500/40 hover:border-blue-400/60 transition-all">
-                <p className="text-sm font-semibold text-blue-300 leading-relaxed">
+              <div className="px-3 py-2 rounded-full glass-effect-strong border-blue-500/40 hover:border-blue-400/60 transition-all flex-shrink-0">
+                <p className="text-xs font-semibold text-blue-300 whitespace-nowrap">
                   Blessed be the name of God forever and ever, for wisdom and
                   power belong to Him - Daniel 2:20
                 </p>
