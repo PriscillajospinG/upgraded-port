@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import project1 from '../assets/1.png';
 import project2 from '../assets/2.png';
+import project3 from '../assets/3.jpeg';
 
 const projects = [
   {
@@ -19,12 +20,12 @@ const projects = [
     link: 'https://github.com/PriscillajospinG/upgraded-port',
   },
   {
-    title: 'Machine Learning Model',
+    title: 'EV Port analyzer',
     description:
-      'A deep learning image classifier using TensorFlow and Python.',
-    tech: ['TensorFlow', 'Python', 'Flask'],
-    image: 'https://via.placeholder.com/400x250',
-    link: 'https://github.com/PriscillajospinG',
+      'A real-time AI-powered EV charging analytics and demand prediction system that helps operators monitor usage, reduce wait times, and optimize charger deployment.',
+    tech: ['YOLOv11', 'Python', 'FastAPI'],
+    image: project3,
+    link: 'https://github.com/PriscillajospinG/bi3-ev-charging-port',
   },
 ];
 
