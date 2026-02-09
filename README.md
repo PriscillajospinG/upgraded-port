@@ -81,12 +81,40 @@ src/
 │   ├── Skills.tsx      # Technical skills
 │   ├── Projects.tsx    # Project showcase
 │   ├── Contact.tsx     # Contact form
-│   └── Footer.tsx      # Site footer
+│   ├── Footer.tsx      # Site footer
+│   ├── Navbar.tsx      # Navigation bar
+│   ├── Verse.tsx       # Testimonials/Verse section
+│   └── ScrollToTop.tsx # Scroll to top button
 ├── assets/             # Static assets (images, icons)
+├── test/               # Test setup and configurations
 ├── App.tsx             # Main app component
 ├── main.tsx            # App entry point
 └── index.css           # Global styles
 ```
+
+## 📁 Featured Projects
+
+### 1. IEEE Paper Generator
+
+A web application for generating and formatting IEEE papers with AI assistance.
+
+- **Tech**: React, Node.js, Tailwind CSS, OpenAI
+- **GitHub**: [View Repository](https://github.com/PriscillajospinG/backend-research-paper-agent/tree/test_backend)
+
+### 2. EV Port Analyzer
+
+Real-time AI-powered EV charging analytics and demand prediction system for optimizing charger deployment and reducing wait times.
+
+- **Tech**: YOLOv11, Python, FastAPI
+- **GitHub**: [View Repository](https://github.com/PriscillajospinG/bi3-ev-charging-port)
+
+### 3. AI-Powered WAF using SecureBERT
+
+Next-generation Web Application Firewall using Transformer-based Deep Learning for real-time detection of zero-day web attacks.
+
+- **Tech**: PyTorch, Transformers, SecureBERT, FastAPI, Docker, Nginx
+- **Key Features**: 95%+ detection rate, <50ms latency, self-learning capabilities
+- **GitHub**: [View Repository](https://github.com/PriscillajospinG/transformer-waf-test)
 
 ## 🚀 Deployment
 
