@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import project1 from '../assets/1.png';
 import project2 from '../assets/2.png';
 import project3 from '../assets/3.jpeg';
+import project4 from '../assets/4.png';
 
 const projects = [
   {
@@ -12,20 +13,28 @@ const projects = [
     link: 'https://github.com/PriscillajospinG/backend-research-paper-agent/tree/test_backend',
   },
   {
-    title: 'Portfolio Website',
-    description:
-      'A modern personal portfolio built with React, Tailwind CSS, and Framer Motion.',
-    tech: ['React', 'Tailwind', 'Framer Motion'],
-    image: project1,
-    link: 'https://github.com/PriscillajospinG/upgraded-port',
-  },
-  {
     title: 'EV Port analyzer',
     description:
       'A real-time AI-powered EV charging analytics and demand prediction system that helps operators monitor usage, reduce wait times, and optimize charger deployment.',
     tech: ['YOLOv11', 'Python', 'FastAPI'],
     image: project3,
     link: 'https://github.com/PriscillajospinG/bi3-ev-charging-port',
+  },
+  {
+    title: 'AI-Powered WAF using SecureBERT',
+    description:
+      'Designed and implemented a real-time, self-learning WAF that detects and blocks zero-day web attacks with <50ms latency and a 95%+ detection rate.',
+    tech: [
+      'PyTorch',
+      'Transformers',
+      'SecureBERT',
+      'FastAPI',
+      'Uvicorn',
+      'Docker',
+      'Nginx',
+    ],
+    image: project4,
+    link: 'https://github.com/PriscillajospinG/transformer-waf-test',
   },
 ];
 
