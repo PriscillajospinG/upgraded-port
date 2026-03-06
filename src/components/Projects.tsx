@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import project2 from '../assets/2.png';
 import project3 from '../assets/3.jpeg';
 import project4 from '../assets/4.png';
+import project5 from '../assets/5.png';
 
 const projects = [
   {
@@ -34,6 +35,14 @@ const projects = [
     ],
     image: project4,
     link: 'https://github.com/PriscillajospinG/transformer-waf-test',
+  },
+  {
+    title: 'PrivAI-Secure-Enterprise-AI-Assistant',
+    description:
+      'PrivAI is a privacy-first, full-stack RAG (Retrieval-Augmented Generation) application designed for secure enterprise document intelligence. It runs entirely on your local infrastructure using Ollama, ensuring that sensitive company knowledge never leaves the organization.',
+    tech: ['Python', 'Langchain', 'Langgraph', 'LlaMa', 'RAG'],
+    image: project5,
+    link: 'https://github.com/PriscillajospinG/PrivAI-Secure-Enterprise-AI-Assistant',
   },
 ];
 
