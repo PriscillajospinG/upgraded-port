@@ -58,7 +58,7 @@ export default function Projects() {
         <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text leading-tight"
           initial={{ opacity: 0, y: -20 }}
@@ -69,7 +69,7 @@ export default function Projects() {
           Featured Projects
         </motion.h2>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -81,7 +81,7 @@ export default function Projects() {
               whileHover={{ y: -8 }}
             >
               {/* Image Container */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-cyan-500/20 to-sky-500/20">
+              <div className="relative h-40 sm:h-56 overflow-hidden bg-gradient-to-br from-cyan-500/20 to-sky-500/20">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -91,11 +91,11 @@ export default function Projects() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors mb-3">
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                <h3 className="text-xl sm:text-2xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors mb-2 sm:mb-3">
                   {project.title}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4 flex-grow">
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-grow">
                   {project.description}
                 </p>
 

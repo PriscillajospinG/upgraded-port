@@ -55,7 +55,7 @@ export default function Contact() {
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -63,17 +63,17 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text leading-tight">
             Get In Touch
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 mx-auto mb-6"></div>
-          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
             Ready to discuss your next project or explore collaboration
             opportunities? I'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           {/* Contact Information */}
           <motion.div
             className="space-y-8"
@@ -83,7 +83,7 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-cyan-400 mb-6 sm:mb-8">
                 Contact Information
               </h3>
               <div className="space-y-4">
@@ -125,7 +125,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-cyan-400 mb-6 sm:mb-8">
                 Connect With Me
               </h3>
               <div className="flex space-x-4">
