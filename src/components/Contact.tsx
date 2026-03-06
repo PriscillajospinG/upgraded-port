@@ -34,7 +34,7 @@ export default function Contact() {
       icon: <FaLinkedin className="w-6 h-6" />,
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/priscilla-jospin-g-a52799295/',
-      color: 'hover:text-blue-500',
+      color: 'hover:text-cyan-500',
     },
     {
       icon: <FaGithub className="w-6 h-6" />,
@@ -47,7 +47,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 relative bg-gradient-to-b from-black via-slate-950 to-black text-white overflow-hidden"
+      className="py-32 relative bg-black/20 text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -63,11 +63,11 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text leading-tight">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 mx-auto mb-6"></div>
+          <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
             Ready to discuss your next project or explore collaboration
             opportunities? I'd love to hear from you.
           </p>
@@ -77,37 +77,37 @@ export default function Contact() {
           {/* Contact Information */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-blue-300 mb-6">
+              <h3 className="text-2xl font-bold text-cyan-400 mb-8">
                 Contact Information
               </h3>
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="group glass-effect-strong rounded-lg p-4 hover:border-blue-400/80 transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="group glass-effect-strong rounded-lg p-4 hover:border-cyan-400/80 transition-all duration-300"
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
                     viewport={{ once: true }}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="text-blue-400 mt-1 transform group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-cyan-400 mt-1 transform group-hover:scale-105 transition-transform duration-300">
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-blue-300 group-hover:text-blue-200 transition-colors mb-1">
+                        <h4 className="text-lg font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors mb-1">
                           {item.title}
                         </h4>
                         {item.link ? (
                           <a
                             href={item.link}
-                            className="text-slate-300 hover:text-blue-300 transition-colors duration-300 text-sm"
+                            className="text-slate-300 hover:text-cyan-300 transition-colors duration-300 text-sm"
                           >
                             {item.details}
                           </a>
@@ -125,7 +125,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-2xl font-bold text-blue-300 mb-6">
+              <h3 className="text-2xl font-bold text-cyan-400 mb-8">
                 Connect With Me
               </h3>
               <div className="flex space-x-4">
@@ -135,7 +135,7 @@ export default function Contact() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 glass-effect-strong rounded-full flex items-center justify-center text-slate-300 hover:text-blue-300 border-blue-400/40 hover:border-blue-400/80 transition-all duration-300 hover:scale-110"
+                    className="w-14 h-14 glass-effect-strong rounded-full flex items-center justify-center text-slate-300 hover:text-cyan-300 border-cyan-400/40 hover:border-cyan-400/80 transition-all duration-300 hover:scale-110"
                     aria-label={social.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -151,13 +151,13 @@ export default function Contact() {
 
           {/* CTA Section */}
           <motion.div
-            className="glass-effect-strong rounded-2xl p-8 hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-center"
-            initial={{ opacity: 0, x: 50 }}
+            className="glass-effect-strong rounded-2xl p-8 hover:border-cyan-400/80 transition-all duration-300 flex flex-col justify-center"
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-blue-300 mb-4">
+            <h3 className="text-2xl font-bold text-cyan-400 mb-4">
               Ready to Work Together?
             </h3>
             <p className="text-slate-300 mb-8 leading-relaxed text-sm">
@@ -169,14 +169,14 @@ export default function Contact() {
             <div className="space-y-3">
               <a
                 href="mailto:priscillajospin@gmail.com"
-                className="w-full block text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="w-full block text-center px-6 py-3 bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Send Email
               </a>
               <a
                 href="/Priscilla-Resume.pdf"
                 download="Priscilla-Jospin-Resume.pdf"
-                className="w-full block text-center px-6 py-3 border-2 border-blue-600 text-blue-300 hover:bg-blue-600/20 font-semibold rounded-lg transition-all duration-300"
+                className="w-full block text-center px-6 py-3 border-2 border-cyan-600 text-cyan-400 hover:bg-cyan-600/20 font-semibold rounded-lg transition-all duration-300"
               >
                 Download Resume
               </a>

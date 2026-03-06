@@ -11,8 +11,8 @@ export default function Verse() {
           viewport={{ once: true }}
           className="flex-shrink-0"
         >
-          <div className="px-3 py-2 border border-blue-500/50 rounded-full glass-effect-strong">
-            <p className="text-xs font-semibold text-blue-300 whitespace-nowrap">
+          <div className="px-3 py-2 border border-cyan-500/50 rounded-full glass-effect-strong">
+            <p className="text-xs font-semibold text-cyan-300 whitespace-nowrap">
               Blessed be the name of God forever and ever, for wisdom and power
               belong to Him - Daniel 2:20
             </p>

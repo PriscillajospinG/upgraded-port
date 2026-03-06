@@ -16,14 +16,14 @@ export default function Hero() {
   };
 
   const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
   };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-black pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-20"
     >
       {/* Animated grid background */}
       <div className="absolute inset-0 overflow-hidden -z-10">
@@ -31,21 +31,21 @@ export default function Hero() {
 
         {/* Animated gradient spheres */}
         <motion.div
-          className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-blue-600/20 to-purple-600/10 rounded-full blur-3xl"
+          className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-cyan-600/20 to-sky-600/10 rounded-full blur-3xl"
           animate={{
-            x: [0, 30, 0],
-            y: [0, 30, 0],
+            x: [0, 20, 0],
+            y: [0, 20, 0],
           }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-l from-cyan-600/20 to-pink-600/10 rounded-full blur-3xl"
           animate={{
-            x: [0, -30, 0],
-            y: [0, -30, 0],
+            x: [0, -20, 0],
+            y: [0, -20, 0],
           }}
           transition={{
-            duration: 14,
+            duration: 25,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: 1,
@@ -70,8 +70,8 @@ export default function Hero() {
               className="flex justify-center mb-8 overflow-x-auto w-full"
               variants={textVariants}
             >
-              <div className="px-3 py-2 rounded-full glass-effect-strong border-blue-500/40 hover:border-blue-400/60 transition-all flex-shrink-0">
-                <p className="text-xs font-semibold text-blue-300 whitespace-nowrap">
+              <div className="px-3 py-2 rounded-full glass-effect-strong border-cyan-500/40 hover:border-cyan-400/60 transition-all flex-shrink-0">
+                <p className="text-xs font-semibold text-cyan-300 whitespace-nowrap">
                   Blessed be the name of God forever and ever, for wisdom and
                   power belong to Him - Daniel 2:20
                 </p>
@@ -80,24 +80,22 @@ export default function Hero() {
 
             {/* Main Title with gradient */}
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight"
+              className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight tracking-tight"
               variants={textVariants}
             >
               <span className="block text-white">Priscilla</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-cyan-400 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
                 Jospin G
               </span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
-              className="text-lg md:text-2xl text-slate-400 mb-8 leading-relaxed font-medium"
+              className="text-lg md:text-xl text-slate-300 mb-12 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0"
               variants={textVariants}
             >
-              Building intelligent systems with{' '}
-              <span className="text-cyan-400 font-bold">AI</span> &{' '}
-              <span className="text-purple-400 font-bold">Full-Stack</span>{' '}
-              expertise
+              Machine Learning Engineer & Full-Stack Developer specializing in
+              AI systems, web applications, and enterprise solutions.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -111,13 +109,13 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-sky-600 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-cyan-500/50" />
                 <span className="relative">View My Work</span>
               </motion.a>
 
               <motion.a
                 href="#contact"
-                className="group px-8 py-3 font-semibold text-white border-2 border-slate-600 rounded-lg hover:border-blue-500/80 transition-all duration-300"
+                className="group px-8 py-3 font-semibold text-white border-2 border-slate-600 rounded-lg hover:border-cyan-500/80 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -144,7 +142,7 @@ export default function Hero() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-slate-600 flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-400 transition-all duration-300"
+                  className="w-12 h-12 rounded-full border border-slate-600 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-400 transition-all duration-300"
                   whileHover={{ scale: 1.2, y: -5 }}
                   aria-label={social.label}
                 >
@@ -172,7 +170,7 @@ export default function Hero() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-cyan-500 to-sky-600 p-1">
                 <img
                   src={profile}
                   alt="Priscilla Jospin"
