@@ -7,7 +7,7 @@ export default function About() {
       icon: FaCode,
       title: 'Full Stack Developer',
       description: 'Modern web applications with React, Node.js & TypeScript',
-      gradient: 'from-blue-600 to-cyan-600',
+      gradient: 'from-cyan-600 to-sky-600',
     },
     {
       icon: FaBrain,
@@ -49,14 +49,14 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-black mb-4">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
             <span className="block text-white mb-2">Who Am I?</span>
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent">
               Let me show you
             </span>
           </h2>
           <div className="flex gap-2 justify-center mt-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+            <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 rounded-full" />
             <div className="w-2 h-1 bg-slate-600 rounded-full" />
             <div className="w-2 h-1 bg-slate-600 rounded-full" />
           </div>
@@ -69,12 +69,12 @@ export default function About() {
             return (
               <motion.div
                 key={index}
-                className="group relative overflow-hidden rounded-2xl glass-effect-premium hover:border-blue-400/50 p-6 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
+                className="group relative overflow-hidden rounded-2xl glass-effect-premium hover:border-cyan-400/50 p-6 transition-all duration-300"
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: index * 0.08, duration: 0.4 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -4 }}
               >
                 {/* Gradient background on hover */}
                 <div
@@ -84,12 +84,12 @@ export default function About() {
                 {/* Content */}
                 <div className="relative z-10">
                   <motion.div
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300`}
                   >
                     <Icon className="w-6 h-6 text-white" />
                   </motion.div>
 
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
@@ -98,7 +98,7 @@ export default function About() {
                 </div>
 
                 {/* Border glow effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br from-cyan-500/20 to-sky-500/20" />
               </motion.div>
             );
           })}
@@ -117,7 +117,7 @@ export default function About() {
           </p>
           <motion.a
             href="#contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-600 to-sky-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

@@ -60,7 +60,7 @@ export default function Projects() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.h2
-          className="text-5xl font-bold text-center mb-16 gradient-text"
+          className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text leading-tight"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -73,15 +73,15 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="group glass-effect-strong rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-blue-400/60 flex flex-col h-full"
-              initial={{ opacity: 0, y: 30 }}
+              className="group glass-effect-strong rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-cyan-400/60 flex flex-col h-full"
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
             >
               {/* Image Container */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-cyan-500/20 to-sky-500/20">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -92,7 +92,7 @@ export default function Projects() {
 
               {/* Content */}
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-blue-300 group-hover:text-blue-200 transition-colors mb-3">
+                <h3 className="text-2xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors mb-3">
                   {project.title}
                 </h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-4 flex-grow">
@@ -104,7 +104,7 @@ export default function Projects() {
                   {project.tech.map(t => (
                     <span
                       key={t}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full text-xs font-medium text-blue-200 border border-blue-400/30 backdrop-blur-sm"
+                      className="px-3 py-1 bg-gradient-to-r from-cyan-500/30 to-sky-500/30 rounded-full text-xs font-medium text-cyan-300 border border-cyan-400/30 backdrop-blur-sm"
                     >
                       {t}
                     </span>
@@ -116,7 +116,7 @@ export default function Projects() {
                   onClick={() =>
                     window.open(project.link, '_blank', 'noopener,noreferrer')
                   }
-                  className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:shadow-lg hover:shadow-blue-500/50"
+                  className="w-full px-4 py-2 bg-gradient-to-r from-cyan-600 to-sky-600 text-white font-semibold rounded-lg hover:from-cyan-500 hover:to-sky-500 transition-all duration-300 transform hover:shadow-lg hover:shadow-cyan-500/50"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

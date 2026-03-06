@@ -48,8 +48,8 @@ export default function NeuralNetworkBg() {
 
     // Animation loop
     const animate = () => {
-      // Clear canvas completely for crisp rendering
-      ctx.fillStyle = '#0a0e27';
+      // Clear canvas completely for crisp rendering with deep blue tone
+      ctx.fillStyle = '#0f172a';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const nodes = nodesRef.current;
@@ -77,7 +77,7 @@ export default function NeuralNetworkBg() {
           );
         }
 
-        // Draw strong glow effect
+        // Draw strong glow effect with deep blue & teal
         const gradient = ctx.createRadialGradient(
           node.x,
           node.y,
@@ -86,22 +86,22 @@ export default function NeuralNetworkBg() {
           node.y,
           node.radius * 4
         );
-        gradient.addColorStop(0, 'rgba(0, 255, 255, 0.3)');
-        gradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.1)');
-        gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+        gradient.addColorStop(0, 'rgba(6, 182, 212, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.1)');
+        gradient.addColorStop(1, 'rgba(15, 23, 42, 0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw main node
+        // Draw main node with teal
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#00ffff';
+        ctx.fillStyle = '#06b6d4';
         ctx.fill();
 
-        // Draw node border
-        ctx.strokeStyle = '#00ccff';
+        // Draw node border with deep blue
+        ctx.strokeStyle = '#0ea5e9';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -118,7 +118,7 @@ export default function NeuralNetworkBg() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.6})`;
+            ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.6})`;
             ctx.lineWidth = 0.8 + opacity * 1.5;
             ctx.stroke();
           }
@@ -152,7 +152,7 @@ export default function NeuralNetworkBg() {
       ref={canvasRef}
       className="fixed inset-0 w-full h-full z-0"
       style={{
-        backgroundColor: '#0a0e27',
+        backgroundColor: '#0f172a',
         display: 'block',
       }}
     />
