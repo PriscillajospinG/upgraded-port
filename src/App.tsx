@@ -6,30 +6,37 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
+import NeuralNetworkBg from './components/NeuralNetworkBg';
 
 export default function App() {
   return (
-    <div className="relative bg-black min-h-screen text-white scroll-smooth">
-      <Navbar />
-      <ScrollToTop />
+    <div className="relative min-h-screen text-white scroll-smooth">
+      {/* AI Neural Network Background */}
+      <NeuralNetworkBg />
 
-      {/* Skip to main content link for accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50"
-      >
-        Skip to main content
-      </a>
+      {/* Content overlays the background */}
+      <div className="relative z-10">
+        <Navbar />
+        <ScrollToTop />
 
-      <main id="main-content" role="main">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50"
+        >
+          Skip to main content
+        </a>
 
-      <Footer />
+        <main id="main-content" role="main">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 }
