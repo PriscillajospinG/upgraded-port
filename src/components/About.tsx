@@ -32,7 +32,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-24 bg-black/20 text-white overflow-hidden"
+      className="relative py-32 bg-black/20 text-white overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

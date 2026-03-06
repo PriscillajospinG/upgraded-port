@@ -50,7 +50,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 relative bg-black/20 text-white overflow-hidden"
+      className="py-32 relative bg-black/20 text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

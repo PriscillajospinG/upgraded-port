@@ -47,7 +47,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 relative bg-black/20 text-white overflow-hidden"
+      className="py-32 relative bg-black/20 text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -77,9 +77,9 @@ export default function Contact() {
           {/* Contact Information */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <div>
@@ -91,13 +91,13 @@ export default function Contact() {
                   <motion.div
                     key={index}
                     className="group glass-effect-strong rounded-lg p-4 hover:border-cyan-400/80 transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
                     viewport={{ once: true }}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="text-cyan-400 mt-1 transform group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-cyan-400 mt-1 transform group-hover:scale-105 transition-transform duration-300">
                         {item.icon}
                       </div>
                       <div>
@@ -152,9 +152,9 @@ export default function Contact() {
           {/* CTA Section */}
           <motion.div
             className="glass-effect-strong rounded-2xl p-8 hover:border-cyan-400/80 transition-all duration-300 flex flex-col justify-center"
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-cyan-400 mb-4">
