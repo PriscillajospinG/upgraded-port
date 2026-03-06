@@ -30,8 +30,8 @@ export default function NeuralNetworkBg() {
     // Initialize nodes
     const initializeNodes = () => {
       const nodeCount = Math.min(
-        50,
-        Math.max(30, Math.floor((canvas.width * canvas.height) / 50000))
+        80,
+        Math.max(50, Math.floor((canvas.width * canvas.height) / 30000))
       );
       nodesRef.current = [];
 
@@ -39,24 +39,21 @@ export default function NeuralNetworkBg() {
         nodesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 1.5 + 0.5,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          radius: Math.random() * 3 + 2,
         });
       }
     };
 
     // Animation loop
     const animate = () => {
-      // Clear canvas with slight fade effect for motion trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+      // Clear canvas completely for crisp rendering
+      ctx.fillStyle = '#0a0e27';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Alternative: clear completely
-      // ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       const nodes = nodesRef.current;
-      const connectionDistance = 150;
+      const connectionDistance = 200;
 
       // Update and draw nodes
       nodes.forEach(node => {
@@ -80,16 +77,31 @@ export default function NeuralNetworkBg() {
           );
         }
 
-        // Draw node
+        // Draw strong glow effect
+        const gradient = ctx.createRadialGradient(
+          node.x,
+          node.y,
+          0,
+          node.x,
+          node.y,
+          node.radius * 4
+        );
+        gradient.addColorStop(0, 'rgba(0, 255, 255, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.1)');
+        gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#0ff'; // Cyan
+        ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
         ctx.fill();
 
-        // Glow effect
+        // Draw main node
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(0, 255, 255, 0.1)';
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#00ffff';
+        ctx.fill();
+
+        // Draw node border
+        ctx.strokeStyle = '#00ccff';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -106,8 +118,8 @@ export default function NeuralNetworkBg() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.4})`;
-            ctx.lineWidth = 0.5 + opacity * 1;
+            ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.6})`;
+            ctx.lineWidth = 0.8 + opacity * 1.5;
             ctx.stroke();
           }
         }

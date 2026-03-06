@@ -47,7 +47,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 relative bg-gradient-to-b from-black via-slate-950 to-black text-white overflow-hidden"
+      className="py-24 relative bg-black/20 text-white overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

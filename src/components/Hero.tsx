@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 bg-black pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-20"
     >
       {/* Animated grid background */}
       <div className="absolute inset-0 overflow-hidden -z-10">
