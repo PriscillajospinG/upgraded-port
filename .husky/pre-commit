@@ -1,1 +1,5 @@
-npx lint-staged
+#!/bin/bash
+if [ -f ~/.nvm/nvm.sh ]; then
+  . ~/.nvm/nvm.sh
+fi
+exec npm exec lint-staged

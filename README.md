@@ -35,7 +35,19 @@ A modern, responsive portfolio website showcasing my expertise as a Machine Lear
 - **React Icons** - Icon library
 - **EmailJS** - Contact form functionality
 
-## 📋 Prerequisites
+## � Featured Projects
+
+1. **IEEE Paper Generator** - A website where you can generate and format IEEE papers using React, Node.js, Tailwind, and OpenAI integration.
+
+2. **EV Port Analyzer** - A real-time AI-powered EV charging analytics and demand prediction system using YOLOv11, Python, and FastAPI.
+
+3. **AI-Powered WAF using SecureBERT** - Designed and implemented a real-time, self-learning Web Application Firewall with <50ms latency and 95%+ detection rate using PyTorch and Transformers.
+
+4. **PrivAI-Secure-Enterprise-AI-Assistant** - A privacy-first, full-stack RAG application for secure enterprise document intelligence using Python, Langchain, and LLaMa.
+
+5. **Bible App** - A comprehensive Bible reading and daily devotional mobile app featuring reading streaks, prayer points, daily verse guidance, and personalized journaling using Kotlin and Firebase.
+
+## �📋 Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
