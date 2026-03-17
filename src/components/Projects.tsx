@@ -3,6 +3,7 @@ import project2 from '../assets/2.png';
 import project3 from '../assets/3.jpeg';
 import project4 from '../assets/4.png';
 import project5 from '../assets/5.png';
+import project6 from '../assets/6.jpeg';
 
 const projects = [
   {
@@ -43,6 +44,14 @@ const projects = [
     tech: ['Python', 'Langchain', 'Langgraph', 'LlaMa', 'RAG'],
     image: project5,
     link: 'https://github.com/PriscillajospinG/PrivAI-Secure-Enterprise-AI-Assistant',
+  },
+  {
+    title: 'Bible App',
+    description:
+      'A comprehensive Bible reading and daily devotional mobile app featuring reading streaks, prayer points, daily verse guidance, personalized journaling, and a 30-day reading plan. Built with modern mobile development practices for seamless spiritual growth tracking.',
+    tech: ['Android', 'iOS', 'Dart', 'Flutter', 'Local LLM'],
+    image: project6,
+    link: 'https://github.com/PriscillajospinG/Bible-App',
   },
 ];
 
