@@ -1,229 +1,315 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import {
   FaGithub,
   FaLinkedin,
   FaEnvelope,
-  FaInstagram,
   FaFileAlt,
+  FaArrowDown,
 } from 'react-icons/fa';
-// Import the raw HEIC file for user tracking and compilation dependencies
-import profileHeic from '../assets/1000392866.heic';
-// Import the converted displayable PNG version
 import profilePng from '../assets/1000392866.png';
 
+// ─── Animation Variants ──────────────────────────────────────────────────────
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const quoteVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.8 },
+  },
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.98, y: 15 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 },
+  },
+};
+
+// ─── Social Links ─────────────────────────────────────────────────────────────
+
+const socials = [
+  {
+    icon: <FaGithub />,
+    url: 'https://github.com/PriscillajospinG',
+    label: 'GitHub',
+  },
+  {
+    icon: <FaLinkedin />,
+    url: 'https://www.linkedin.com/in/priscilla-jospin-g-a52799295/',
+    label: 'LinkedIn',
+  },
+  {
+    icon: <FaEnvelope />,
+    url: 'mailto:priscillajospin@gmail.com',
+    label: 'Email',
+  },
+];
+
+// ─── Component ───────────────────────────────────────────────────────────────
+
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  };
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
-  // Keep reference to the HEIC import to prevent compilation tree-shaking
-  const imageSource = profilePng || profileHeic;
+  // Subtle parallax: image drifts up slightly as user scrolls into About
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-24 md:pt-32 pb-16"
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black/20 text-white"
     >
-      {/* Background - Minimal dark with subtle radial glow and light grid */}
-      <div className="absolute inset-0 z-0 bg-[#09090B] pointer-events-none">
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '48px 48px',
-          }}
-        />
-        {/* Very subtle animating radial gradient */}
-        <motion.div
-          className="absolute -top-[30%] left-1/2 -translate-x-1/2 w-[900px] h-[700px] rounded-full bg-gradient-to-b from-sky-500/5 via-indigo-500/3 to-transparent blur-[100px]"
-          animate={{
-            opacity: [0.7, 0.9, 0.7],
-            scale: [1, 1.03, 1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+      {/* ── Background blobs ────────────────────────────────────────────── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -right-1/3 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -left-1/3 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
       </div>
 
-      <motion.div
-        className="relative z-10 max-w-5xl w-full mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Text (Appears last on mobile, first on desktop) */}
-          <motion.div
-            className="lg:col-span-7 text-left space-y-6 order-2 lg:order-1"
-            variants={containerVariants}
-          >
-            <motion.div className="space-y-1.5" variants={textVariants}>
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#71717A]">
-                Hello, I&apos;m
+      {/* ── Hero grid ────────────────────────────────────────────────────── */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+        {/* ── LEFT: Text ───────────────────────────────────────────────── */}
+        <motion.div
+          className="lg:col-span-7 flex flex-col gap-7 order-2 lg:order-1"
+          style={{ y: textY, opacity: textOpacity }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Eyebrow pill */}
+          <motion.div variants={fadeUpVariants}>
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-effect-strong border border-cyan-400/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-xs font-semibold text-cyan-300 tracking-[0.2em] uppercase">
+                Hello, I'm
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-none">
-                Priscilla Jospin G
-              </h1>
+            </div>
+          </motion.div>
 
-              {/* Job titles with a small gradient */}
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-3">
-                <span className="text-sm font-semibold tracking-wide bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-                  AI Engineer
-                </span>
-                <span className="text-xs text-[#71717A]">&bull;</span>
-                <span className="text-sm font-semibold tracking-wide bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Machine Learning Engineer
-                </span>
-              </div>
-            </motion.div>
+          {/* Name */}
+          <motion.div variants={fadeUpVariants} className="space-y-2">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
+              Priscilla Jospin G
+            </h1>
 
-            {/* Description */}
+            {/* Role line */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-1">
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent tracking-tight">
+                AI Engineer
+              </span>
+              <span className="text-slate-600 select-none text-xl">·</span>
+              <span className="text-xl sm:text-2xl font-semibold text-slate-300 tracking-tight">
+                Machine Learning Engineer
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Decorative rule */}
+          <motion.div
+            className="flex gap-2 items-center"
+            variants={fadeUpVariants}
+          >
+            <div className="w-12 h-px bg-gradient-to-r from-cyan-500 to-sky-500 rounded-full" />
+            <div className="w-2 h-px bg-slate-600 rounded-full" />
+            <div className="w-2 h-px bg-slate-600 rounded-full" />
+          </motion.div>
+
+          {/* Bio & Quote Wrapper */}
+          <div className="space-y-6 max-w-xl">
+            {/* Bio */}
             <motion.p
-              className="text-base text-[#A1A1AA] leading-relaxed max-w-xl font-normal"
-              variants={textVariants}
+              className="text-slate-300/90 text-lg sm:text-xl leading-relaxed font-medium"
+              variants={fadeUpVariants}
             >
-              Building intelligent software using Machine Learning, Deep
-              Learning, Computer Vision and Full Stack Development.
+              Building intelligent software at the intersection of Machine
+              Learning, Deep Learning, Computer Vision, and Full Stack
+              Development. Focused on creating AI systems that solve real-world
+              problems.
             </motion.p>
 
-            {/* Buttons Row */}
+            {/* Hero Quote */}
             <motion.div
-              className="flex flex-wrap items-center gap-3 pt-2"
-              variants={textVariants}
+              variants={quoteVariants}
+              className="pl-4 border-l-2 border-cyan-500/30"
             >
-              <a
-                href="/Priscilla-Resume.pdf"
-                download="Priscilla-Jospin-Resume.pdf"
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-zinc-950 bg-white hover:bg-zinc-200 rounded-lg transition-all shadow-md hover:shadow-lg"
-              >
-                <FaFileAlt className="text-[11px]" />
-                Download Resume
-              </a>
-
-              <a
-                href="https://github.com/PriscillajospinG"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 text-xs font-semibold text-[#A1A1AA] hover:text-white bg-zinc-900 border border-white/5 hover:border-white/10 rounded-lg transition-colors"
-              >
-                GitHub
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/priscilla-jospin-g-a52799295/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 text-xs font-semibold text-[#A1A1AA] hover:text-white bg-zinc-900 border border-white/5 hover:border-white/10 rounded-lg transition-colors"
-              >
-                LinkedIn
-              </a>
-
-              <a
-                href="#contact"
-                className="px-5 py-2.5 text-xs font-semibold text-[#A1A1AA] hover:text-white bg-zinc-900 border border-white/5 hover:border-white/10 rounded-lg transition-colors"
-              >
-                Contact
-              </a>
+              <p className="text-base sm:text-lg text-slate-400/90 italic font-medium leading-relaxed tracking-wide">
+                "Engineering the future through intelligence, creativity,{' '}
+                <br className="hidden sm:block" /> and continuous learning."
+              </p>
             </motion.div>
+          </div>
 
-            {/* Social Icons row below buttons */}
-            <motion.div
-              className="flex items-center gap-4 pt-3 border-t border-white/[0.04] max-w-xs"
-              variants={textVariants}
-            >
-              {[
-                {
-                  icon: <FaGithub />,
-                  url: 'https://github.com/PriscillajospinG',
-                  label: 'GitHub',
-                },
-                {
-                  icon: <FaLinkedin />,
-                  url: 'https://www.linkedin.com/in/priscilla-jospin-g-a52799295/',
-                  label: 'LinkedIn',
-                },
-                {
-                  icon: <FaEnvelope />,
-                  url: 'mailto:priscillajospin@gmail.com',
-                  label: 'Email',
-                },
-                {
-                  icon: <FaInstagram />,
-                  url: 'https://instagram.com',
-                  label: 'Instagram',
-                },
-              ].map(social => (
-                <a
-                  key={social.label}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#71717A] hover:text-white transition-colors"
-                  aria-label={social.label}
-                >
-                  <span className="text-sm">{social.icon}</span>
-                </a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column: Image (Appears first on mobile, last on desktop) */}
+          {/* CTA Buttons */}
           <motion.div
-            className="lg:col-span-5 flex justify-center order-1 lg:order-2"
-            variants={imageVariants}
+            className="flex flex-wrap items-center gap-4 pt-4"
+            variants={fadeUpVariants}
           >
-            {/* Premium Profile Frame */}
-            <motion.div
-              className="relative p-2 rounded-2xl bg-zinc-950/60 border border-white/10 shadow-2xl flex items-center justify-center max-w-[280px] sm:max-w-[320px] w-full aspect-square overflow-hidden"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
+            <a
+              href="/Priscilla-Resume.pdf"
+              download="Priscilla-Jospin-Resume.pdf"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-gradient-to-r from-cyan-600 to-sky-600 text-white font-semibold rounded-xl hover:from-cyan-500 hover:to-sky-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 text-sm sm:text-base"
             >
-              {/* Subtle inner cyan glow */}
-              <div className="absolute inset-0 bg-sky-500/[0.02] pointer-events-none" />
+              <FaFileAlt className="text-sm opacity-90" />
+              Download Resume
+            </a>
 
-              {/* Circular profile image container */}
-              <div className="w-full h-full rounded-xl overflow-hidden relative bg-zinc-900 border border-white/5">
-                <img
-                  src={imageSource}
-                  alt="Priscilla Jospin"
-                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
-                />
-              </div>
-            </motion.div>
+            <a
+              href="https://github.com/PriscillajospinG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 glass-effect-strong border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm sm:text-base"
+            >
+              <FaGithub className="text-lg opacity-90" />
+              GitHub
+            </a>
+
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 glass-effect-strong border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm sm:text-base"
+            >
+              Contact
+            </a>
           </motion.div>
-        </div>
+
+          {/* Social icon row */}
+          <motion.div
+            className="flex items-center gap-5 pt-6 mt-2 border-t border-white/[0.06] max-w-md"
+            variants={fadeUpVariants}
+          >
+            {socials.map(social => (
+              <a
+                key={social.label}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="w-10 h-10 flex items-center justify-center rounded-xl glass-effect-strong border border-white/10 hover:border-cyan-400/50 text-slate-400 hover:text-cyan-300 transition-all duration-300 hover:-translate-y-1 text-lg shadow-sm hover:shadow-cyan-500/20"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT: Profile Card ──────────────────────────────────────── */}
+        <motion.div
+          className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2 w-full"
+          style={{ y: imageY, opacity: imageOpacity }}
+          variants={imageVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/*
+            Premium Profile Frame
+          */}
+          <motion.div
+            className="group relative w-full max-w-[320px] sm:max-w-[380px] rounded-[2rem] glass-effect-strong border border-white/10 hover:border-cyan-400/50 overflow-hidden shadow-2xl transition-all duration-500"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            {/* Top cyan accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+
+            {/* Hover wash overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-sky-500/0 group-hover:from-cyan-500/10 group-hover:to-sky-500/10 transition-all duration-500 z-10 pointer-events-none" />
+
+            {/* Image container */}
+            <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-cyan-900/20 to-slate-900/50">
+              <img
+                src={profilePng}
+                alt="Priscilla Jospin G"
+                className="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-[0.25,0.46,0.45,0.94]"
+              />
+              {/* Premium gradient overlay for bottom text area */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Name + status overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <p className="text-white font-extrabold text-xl leading-tight tracking-tight shadow-black/50 drop-shadow-md">
+                  Priscilla Jospin G
+                </p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-emerald-300 text-sm font-semibold tracking-wide">
+                    Open to opportunities
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card footer */}
+            <div className="p-5 flex flex-wrap gap-2.5 bg-black/40 backdrop-blur-md">
+              {['AI Engineer', 'ML Engineer', 'Full Stack'].map(tag => (
+                <span
+                  key={tag}
+                  className="px-3.5 py-1.5 bg-gradient-to-r from-cyan-500/20 to-sky-500/20 rounded-full text-xs font-semibold text-cyan-300 border border-cyan-400/30 backdrop-blur-md shadow-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* ── Soft gradient fade into About section ─────────────────────────── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
+        style={{
+          background:
+            'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%)',
+        }}
+      />
+
+      {/* ── Scroll indicator ──────────────────────────────────────────────── */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center gap-3"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+      >
+        <span className="text-[10px] font-bold text-slate-500 tracking-[0.25em] uppercase">
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="text-slate-500 hover:text-cyan-400 transition-colors duration-300"
+        >
+          <FaArrowDown className="text-sm" />
+        </motion.div>
       </motion.div>
     </section>
   );
