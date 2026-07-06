@@ -165,8 +165,11 @@ export default function Hero() {
               className="pl-4 border-l-2 border-cyan-500/30"
             >
               <p className="text-base sm:text-lg text-slate-400/90 italic font-medium leading-relaxed tracking-wide">
-                "Engineering the future through intelligence, creativity,{' '}
-                <br className="hidden sm:block" /> and continuous learning."
+                "For the Lord gives wisdom; <br className="hidden sm:block" />{' '}
+                from his mouth come knowledge and understanding."
+              </p>
+              <p className="mt-2 text-xs font-semibold text-cyan-400/80 tracking-widest uppercase">
+                — Proverbs 2:6
               </p>
             </motion.div>
           </div>
