@@ -54,14 +54,14 @@ const experiences: ExperienceItem[] = [
     accentTo: 'to-sky-500',
     glowColor: 'rgba(6,182,212,0.35)',
     description:
-      'Gained practical, hands-on experience working with real-world datasets across the complete ML pipeline — from raw data ingestion to model evaluation and predictive analytics.',
+      'Worked as a Data Science Intern where I gained practical experience in data preprocessing, exploratory data analysis, machine learning, and predictive modeling. I collaborated with mentors, worked with real-world datasets, and implemented ML algorithms using Python, Pandas and Scikit-Learn — strengthening my understanding of the full machine learning workflow from data collection to model evaluation.',
     responsibilities: [
       'Data preprocessing & cleaning',
-      'Data visualization & EDA',
+      'Exploratory data analysis',
       'Feature engineering',
+      'Implementing ML algorithms',
       'Model training & evaluation',
-      'Predictive analytics',
-      'End-to-end ML workflows',
+      'Working with real-world datasets',
     ],
     badges: [
       {
@@ -90,9 +90,14 @@ const experiences: ExperienceItem[] = [
           'from-purple-500/30 to-violet-500/30 border-purple-400/40 text-purple-300',
       },
       {
-        label: 'Data Science',
+        label: 'Data Analysis',
         gradient:
           'from-teal-500/30 to-emerald-500/30 border-teal-400/40 text-teal-300',
+      },
+      {
+        label: 'Jupyter Notebook',
+        gradient:
+          'from-amber-500/30 to-orange-500/30 border-amber-400/40 text-amber-300',
       },
     ],
   },
@@ -107,20 +112,20 @@ const experiences: ExperienceItem[] = [
     accentTo: 'to-pink-500',
     glowColor: 'rgba(168,85,247,0.35)',
     description:
-      'Currently building intelligent healthcare solutions powered by computer vision and deep learning. Leading development of an AI-powered physiotherapy assessment system using MediaPipe and CTR-GCN for human pose analysis.',
+      'Currently working as an AI Engineer Intern building computer vision and machine learning pipelines for physiotherapy assessment. My work involves human pose estimation, dataset preparation, model training, and evaluation. This internship has given me practical experience applying AI to real healthcare problems and has deepened my understanding of deep learning and computer vision.',
     responsibilities: [
-      'Computer Vision & Pose Estimation',
-      'Transformer & Deep Learning Models',
+      'Human pose estimation',
+      'Computer vision pipelines',
+      'Dataset preparation & labelling',
+      'Model training & evaluation',
       'MediaPipe & CTR-GCN integration',
-      'Dataset engineering & curation',
-      'Model training & optimization',
-      'Healthcare AI research',
+      'Contributing to AI research',
     ],
     badges: [
       {
-        label: 'AI Healthcare',
+        label: 'Python',
         gradient:
-          'from-pink-500/30 to-rose-500/30 border-pink-400/40 text-pink-300',
+          'from-yellow-500/30 to-amber-500/30 border-yellow-400/40 text-yellow-300',
       },
       {
         label: 'TensorFlow',
@@ -133,6 +138,11 @@ const experiences: ExperienceItem[] = [
           'from-red-500/30 to-orange-500/30 border-red-400/40 text-red-300',
       },
       {
+        label: 'MediaPipe',
+        gradient:
+          'from-green-500/30 to-emerald-500/30 border-green-400/40 text-green-300',
+      },
+      {
         label: 'Computer Vision',
         gradient:
           'from-cyan-500/30 to-sky-500/30 border-cyan-400/40 text-cyan-300',
@@ -143,14 +153,19 @@ const experiences: ExperienceItem[] = [
           'from-purple-500/30 to-violet-500/30 border-purple-400/40 text-purple-300',
       },
       {
-        label: 'MediaPipe',
-        gradient:
-          'from-green-500/30 to-emerald-500/30 border-green-400/40 text-green-300',
-      },
-      {
         label: 'Pose Estimation',
         gradient:
           'from-blue-500/30 to-indigo-500/30 border-blue-400/40 text-blue-300',
+      },
+      {
+        label: 'CTR-GCN',
+        gradient:
+          'from-pink-500/30 to-rose-500/30 border-pink-400/40 text-pink-300',
+      },
+      {
+        label: 'Git',
+        gradient:
+          'from-slate-500/30 to-gray-500/30 border-slate-400/40 text-slate-300',
       },
     ],
   },
