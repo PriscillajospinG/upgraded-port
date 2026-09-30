@@ -104,15 +104,15 @@ const experiences: ExperienceItem[] = [
   {
     company: 'Rapha MedTech',
     role: 'AI Engineer Intern',
-    duration: 'May 2026 – Present',
-    type: 'Internship · Active',
+    duration: 'May 2026 – July 2026',
+    type: 'Internship',
     icon: <FaRobot />,
     logoGradient: 'from-purple-500 to-pink-600',
     accentFrom: 'from-purple-500',
     accentTo: 'to-pink-500',
     glowColor: 'rgba(168,85,247,0.35)',
     description:
-      'Currently working as an AI Engineer Intern building computer vision and machine learning pipelines for physiotherapy assessment. My work involves human pose estimation, dataset preparation, model training, and evaluation. This internship has given me practical experience applying AI to real healthcare problems and has deepened my understanding of deep learning and computer vision.',
+      'Worked as an AI Engineer Intern building computer vision and machine learning pipelines for physiotherapy assessment. My work involved human pose estimation, dataset preparation, model training, and evaluation. This internship gave me practical experience applying AI to real healthcare problems and deepened my understanding of deep learning and computer vision.',
     responsibilities: [
       'Human pose estimation',
       'Computer vision pipelines',
@@ -166,6 +166,59 @@ const experiences: ExperienceItem[] = [
         label: 'Git',
         gradient:
           'from-slate-500/30 to-gray-500/30 border-slate-400/40 text-slate-300',
+      },
+    ],
+  },
+  {
+    company: 'NCS Partners',
+    role: 'Trainee – MAWM (WMS Training)',
+    duration: 'Sep 2026 – Present',
+    type: 'Training · Active',
+    icon: <FaFlask />,
+    logoGradient: 'from-emerald-500 to-teal-600',
+    accentFrom: 'from-emerald-500',
+    accentTo: 'to-teal-500',
+    glowColor: 'rgba(16,185,129,0.35)',
+    description:
+      'Currently undergoing intensive Warehouse Management System (WMS) training as a Trainee at NCS Partners, Coimbatore. The program focuses on MAWM (Manhattan Active Warehouse Management), providing hands-on exposure to enterprise-level WMS operations, configuration, and workflows used in modern supply chain and logistics environments.',
+    responsibilities: [
+      'MAWM WMS configuration & setup',
+      'Warehouse operations & workflows',
+      'Inventory & order management',
+      'Supply chain process understanding',
+      'System testing & validation',
+      'Logistics domain training',
+    ],
+    badges: [
+      {
+        label: 'MAWM',
+        gradient:
+          'from-emerald-500/30 to-teal-500/30 border-emerald-400/40 text-emerald-300',
+      },
+      {
+        label: 'WMS',
+        gradient:
+          'from-teal-500/30 to-cyan-500/30 border-teal-400/40 text-teal-300',
+      },
+      {
+        label: 'Supply Chain',
+        gradient:
+          'from-green-500/30 to-emerald-500/30 border-green-400/40 text-green-300',
+      },
+      {
+        label: 'Warehouse Management',
+        gradient:
+          'from-cyan-500/30 to-sky-500/30 border-cyan-400/40 text-cyan-300',
+      },
+      {
+        label: 'Logistics',
+        gradient:
+          'from-blue-500/30 to-indigo-500/30 border-blue-400/40 text-blue-300',
+      },
+      {
+        label: 'Manhattan Associates',
+        gradient:
+          'from-indigo-500/30 to-purple-500/30 border-indigo-400/40 text-indigo-300',
       },
     ],
   },
