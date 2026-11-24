@@ -1,5 +1,11 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type Variants,
+} from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import {
   FaGithub,
   FaLinkedin,
@@ -7,46 +13,48 @@ import {
   FaFileAlt,
   FaArrowDown,
 } from 'react-icons/fa';
-import profilePng from '../assets/1000392866.png';
+import profilePng from '../assets/profile.webp';
+import waveVideo from '../assets/media/wave.mp4';
+import wavePoster from '../assets/media/wave-poster.webp';
 
 // ─── Animation Variants ──────────────────────────────────────────────────────
 
-const containerVariants = {
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.12, delayChildren: 0.25 },
   },
 };
 
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 30 },
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE_OUT } },
+};
+
+const maskVariants: Variants = {
+  hidden: { y: '105%' },
+  visible: { y: '0%', transition: { duration: 1.05, ease: EASE_OUT } },
+};
+
+const quoteVariants: Variants = {
+  hidden: { opacity: 0, filter: 'blur(6px)' },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+    filter: 'blur(0px)',
+    transition: { duration: 1.1, ease: EASE_OUT },
   },
 };
 
-const quoteVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.8 },
-  },
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.98, y: 15 },
+const imageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96, y: 20 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 },
+    transition: { duration: 1.2, ease: EASE_OUT, delay: 0.45 },
   },
 };
 
@@ -70,87 +78,151 @@ const socials = [
   },
 ];
 
+// ─── Background: looping wave video, still image under reduced motion ────────
+
+function WaveBackdrop({
+  sectionRef,
+}: {
+  sectionRef: React.RefObject<HTMLElement | null>;
+}) {
+  const reduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [ready, setReady] = useState(false);
+
+  // Only play while the hero is on screen (saves battery and CPU)
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (reduce || !video || !section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        void video.play?.()?.catch(() => undefined);
+      } else {
+        video.pause?.();
+      }
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [reduce, sectionRef]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* Still fallback: always underneath, the only layer under reduced motion */}
+      <img
+        src={wavePoster}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-[60%_35%] opacity-70"
+        decoding="async"
+      />
+      {!reduce && (
+        <video
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover object-[60%_35%] transition-opacity duration-700 ${
+            ready ? 'opacity-80' : 'opacity-0'
+          }`}
+          src={waveVideo}
+          poster={wavePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onLoadedData={() => setReady(true)}
+        />
+      )}
+      {/* Scrims keep the text readable over the brightest part of the wave */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/45 lg:via-black/55 lg:to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-black" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
+    </div>
+  );
+}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
 
-  // Subtle parallax: image drifts up slightly as user scrolls into About
+  // Subtle parallax as the visitor scrolls into About (off under reduced motion)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
   return (
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black/20 text-white"
+      className="relative flex min-h-screen min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-surface text-ink"
     >
-      {/* ── Background blobs ────────────────────────────────────────────── */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -right-1/3 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -left-1/3 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
-      </div>
+      <WaveBackdrop sectionRef={sectionRef} />
 
       {/* ── Hero grid ────────────────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 pt-24 pb-20 sm:gap-14 sm:pt-28 sm:pb-24 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-10 lg:pt-32">
         {/* ── LEFT: Text ───────────────────────────────────────────────── */}
         <motion.div
-          className="lg:col-span-7 flex flex-col gap-7 order-2 lg:order-1"
-          style={{ y: textY, opacity: textOpacity }}
+          className="order-2 flex flex-col gap-7 lg:order-1 lg:col-span-7"
+          style={reduce ? undefined : { y: textY, opacity: textOpacity }}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Eyebrow pill */}
+          {/* Eyebrow badge */}
           <motion.div variants={fadeUpVariants}>
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-effect-strong border border-cyan-400/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-xs font-semibold text-cyan-300 tracking-[0.2em] uppercase">
-                Hello, I'm
-              </span>
+            <div className="badge-metal">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="#fff"
+                aria-hidden="true"
+                style={{
+                  filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.45))',
+                }}
+              >
+                <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z" />
+              </svg>
+              <span>Hello, I'm</span>
             </div>
           </motion.div>
 
           {/* Name */}
-          <motion.div variants={fadeUpVariants} className="space-y-2">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
-              Priscilla Jospin G
-            </h1>
+          <div className="space-y-4">
+            <div className="overflow-hidden pb-[0.08em]">
+              <motion.h1
+                variants={maskVariants}
+                className="text-balance text-[clamp(2.75rem,7vw,5.75rem)] font-medium leading-[1.02] tracking-[-0.045em] text-ink"
+              >
+                Priscilla Jospin G
+              </motion.h1>
+            </div>
 
             {/* Role line */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-1">
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent tracking-tight">
+            <motion.div
+              variants={fadeUpVariants}
+              className="flex flex-nowrap items-baseline gap-x-2 sm:flex-wrap sm:gap-x-3 sm:gap-y-1"
+            >
+              <span className="whitespace-nowrap font-serif text-[clamp(1.5rem,3vw,2.4rem)] italic leading-none tracking-[-0.02em] text-ink-muted">
                 AI Engineer
               </span>
-              <span className="text-slate-600 select-none text-xl">·</span>
-              <span className="text-xl sm:text-2xl font-semibold text-slate-300 tracking-tight">
+              <span className="select-none text-base text-ink-faint sm:text-xl">
+                ·
+              </span>
+              <span className="whitespace-nowrap text-[15px] font-medium tracking-[-0.02em] text-ink-soft sm:text-xl">
                 Machine Learning Engineer
               </span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Decorative rule */}
-          <motion.div
-            className="flex gap-2 items-center"
-            variants={fadeUpVariants}
-          >
-            <div className="w-12 h-px bg-gradient-to-r from-cyan-500 to-sky-500 rounded-full" />
-            <div className="w-2 h-px bg-slate-600 rounded-full" />
-            <div className="w-2 h-px bg-slate-600 rounded-full" />
-          </motion.div>
-
-          {/* Bio & Quote Wrapper */}
-          <div className="space-y-6 max-w-xl">
-            {/* Bio */}
+          {/* Bio & Quote */}
+          <div className="max-w-xl space-y-7">
             <motion.p
-              className="text-slate-300/90 text-lg sm:text-xl leading-relaxed font-medium"
+              className="text-base leading-relaxed text-ink-muted sm:text-[17px]"
               variants={fadeUpVariants}
             >
               Building intelligent software at the intersection of Machine
@@ -159,32 +231,32 @@ export default function Hero() {
               problems.
             </motion.p>
 
-            {/* Hero Quote */}
-            <motion.div
+            <motion.figure
               variants={quoteVariants}
-              className="pl-4 border-l-2 border-cyan-500/30"
+              className="relative border-l border-white/20 pl-5"
             >
-              <p className="text-base sm:text-lg text-slate-400/90 italic font-medium leading-relaxed tracking-wide">
+              <p className="font-serif text-xl italic leading-snug text-ink-soft sm:text-[22px]">
                 "For the Lord gives wisdom; <br className="hidden sm:block" />{' '}
                 from his mouth come knowledge and understanding."
               </p>
-              <p className="mt-2 text-xs font-semibold text-cyan-400/80 tracking-widest uppercase">
-                — Proverbs 2:6
-              </p>
-            </motion.div>
+              <p className="label mt-3 text-ink-faint">— Proverbs 2:6</p>
+            </motion.figure>
           </div>
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-wrap items-center gap-4 pt-4"
+            className="flex flex-wrap items-center gap-3 pt-2"
             variants={fadeUpVariants}
           >
             <a
               href="/Priscilla-Resume.pdf"
               download="Priscilla-Jospin-Resume.pdf"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-gradient-to-r from-cyan-600 to-sky-600 text-white font-semibold rounded-xl hover:from-cyan-500 hover:to-sky-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 text-sm sm:text-base"
+              className="btn btn-solid"
             >
-              <FaFileAlt className="text-sm opacity-90" />
+              <FaFileAlt
+                className="text-[13px] opacity-80"
+                aria-hidden="true"
+              />
               Download Resume
             </a>
 
@@ -192,23 +264,20 @@ export default function Hero() {
               href="https://github.com/PriscillajospinG"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 glass-effect-strong border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm sm:text-base"
+              className="btn btn-ghost"
             >
-              <FaGithub className="text-lg opacity-90" />
+              <FaGithub className="text-base opacity-90" aria-hidden="true" />
               GitHub
             </a>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 glass-effect-strong border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm sm:text-base"
-            >
+            <a href="#contact" className="btn btn-ghost">
               Contact
             </a>
           </motion.div>
 
           {/* Social icon row */}
           <motion.div
-            className="flex items-center gap-5 pt-6 mt-2 border-t border-white/[0.06] max-w-md"
+            className="flex max-w-md items-center gap-3 border-t border-line pt-6"
             variants={fadeUpVariants}
           >
             {socials.map(social => (
@@ -218,7 +287,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 flex items-center justify-center rounded-xl glass-effect-strong border border-white/10 hover:border-cyan-400/50 text-slate-400 hover:text-cyan-300 transition-all duration-300 hover:-translate-y-1 text-lg shadow-sm hover:shadow-cyan-500/20"
+                className="flex h-11 w-11 items-center justify-center rounded-full glass text-[17px] text-ink-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:text-ink"
               >
                 {social.icon}
               </a>
@@ -228,44 +297,39 @@ export default function Hero() {
 
         {/* ── RIGHT: Profile Card ──────────────────────────────────────── */}
         <motion.div
-          className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2 w-full"
-          style={{ y: imageY, opacity: imageOpacity }}
+          className="order-1 flex w-full justify-center lg:order-2 lg:col-span-5 lg:justify-end"
+          style={reduce ? undefined : { y: imageY, opacity: imageOpacity }}
           variants={imageVariants}
           initial="hidden"
           animate="visible"
         >
-          {/*
-            Premium Profile Frame
-          */}
           <motion.div
-            className="group relative w-full max-w-[320px] sm:max-w-[380px] rounded-[2rem] glass-effect-strong border border-white/10 hover:border-cyan-400/50 overflow-hidden shadow-2xl transition-all duration-500"
-            whileHover={{ y: -8 }}
+            className="group relative w-full max-w-[230px] overflow-hidden rounded-[28px] border border-white/15 bg-black/40 p-2 shadow-[0_30px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:max-w-[300px] lg:max-w-[360px]"
+            whileHover={{ y: -6 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
-            {/* Top cyan accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-
-            {/* Hover wash overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-sky-500/0 group-hover:from-cyan-500/10 group-hover:to-sky-500/10 transition-all duration-500 z-10 pointer-events-none" />
-
             {/* Image container */}
-            <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-cyan-900/20 to-slate-900/50">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-surface-card">
               <img
                 src={profilePng}
                 alt="Priscilla Jospin G"
-                className="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-[0.25,0.46,0.45,0.94]"
+                width={900}
+                height={1200}
+                className="h-full w-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
               />
-              {/* Premium gradient overlay for bottom text area */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
               {/* Name + status overlay at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <p className="text-white font-extrabold text-xl leading-tight tracking-tight shadow-black/50 drop-shadow-md">
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-lg font-semibold leading-tight tracking-[-0.03em] text-ink drop-shadow-md">
                   Priscilla Jospin G
                 </p>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                  <span className="text-emerald-300 text-sm font-semibold tracking-wide">
+                <div className="mt-1.5 flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  </span>
+                  <span className="text-[13px] text-ink-soft">
                     Open to opportunities
                   </span>
                 </div>
@@ -273,12 +337,9 @@ export default function Hero() {
             </div>
 
             {/* Card footer */}
-            <div className="p-5 flex flex-wrap gap-2.5 bg-black/40 backdrop-blur-md">
+            <div className="flex flex-wrap gap-2 px-2 pb-1.5 pt-3">
               {['AI Engineer', 'ML Engineer', 'Full Stack'].map(tag => (
-                <span
-                  key={tag}
-                  className="px-3.5 py-1.5 bg-gradient-to-r from-cyan-500/20 to-sky-500/20 rounded-full text-xs font-semibold text-cyan-300 border border-cyan-400/30 backdrop-blur-md shadow-sm"
-                >
+                <span key={tag} className="chip">
                   {tag}
                 </span>
               ))}
@@ -287,33 +348,24 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── Soft gradient fade into About section ─────────────────────────── */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
-        style={{
-          background:
-            'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%)',
-        }}
-      />
-
       {/* ── Scroll indicator ──────────────────────────────────────────────── */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center gap-3"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
+      <motion.a
+        href="#about"
+        className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2.5 text-ink-faint transition-colors hover:text-ink md:flex"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
       >
-        <span className="text-[10px] font-bold text-slate-500 tracking-[0.25em] uppercase">
+        <span className="text-[10px] font-medium uppercase tracking-[0.3em]">
           Scroll
         </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="text-slate-500 hover:text-cyan-400 transition-colors duration-300"
+        <motion.span
+          animate={reduce ? undefined : { y: [0, 5, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <FaArrowDown className="text-sm" />
-        </motion.div>
-      </motion.div>
+          <FaArrowDown className="text-xs" aria-hidden="true" />
+        </motion.span>
+      </motion.a>
     </section>
   );
 }
