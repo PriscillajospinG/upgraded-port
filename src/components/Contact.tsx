@@ -15,13 +15,13 @@ export default function Contact() {
       icon: <FaEnvelope className="w-6 h-6" />,
       title: 'Email',
       details: 'priscillajospin@gmail.com',
-      link: 'priscillajospin@gmail.com',
+      link: 'mailto:priscillajospin@gmail.com',
     },
     {
       icon: <FaPhone className="w-6 h-6" />,
       title: 'Phone',
       details: '+91 6380206687',
-      link: 'tel:+15551234567',
+      link: 'tel:+916380206687',
     },
     {
       icon: <FaMapMarkerAlt className="w-6 h-6" />,
