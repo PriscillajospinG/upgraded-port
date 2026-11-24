@@ -2,25 +2,38 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'sans-serif',
+        ],
+        serif: ['"Instrument Serif"', '"Times New Roman"', 'Times', 'serif'],
+      },
       colors: {
-        darkBlue: '#0a0a0f',
-        darkPurple: '#1a1a2e',
-        neonBlue: '#3730bdff',
-        neonPurple: '#562286ff',
-      },
-      animation: {
-        float: 'float 6s ease-in-out infinite',
-        glow: 'glow 3s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+        // Monochrome system: one background, one ink, greys, one cool accent.
+        ink: {
+          DEFAULT: '#ffffff',
+          soft: '#d8d8d8',
+          muted: '#9a9a9a',
+          faint: '#6b6b6b',
         },
-        glow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-          '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' },
+        surface: {
+          DEFAULT: '#000000',
+          raised: '#0a0a0a',
+          card: '#0f0f0f',
         },
+        line: {
+          DEFAULT: 'rgba(255, 255, 255, 0.12)',
+          strong: 'rgba(255, 255, 255, 0.22)',
+        },
+        accent: '#bcd0ff',
+      },
+      transitionTimingFunction: {
+        out: 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },

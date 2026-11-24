@@ -1,9 +1,10 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { HiArrowUp } from 'react-icons/hi';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const reduce = useReducedMotion();
 
   const toggleVisibility = () => {
     setIsVisible(window.scrollY > 300);
@@ -12,12 +13,12 @@ export default function ScrollToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: reduce ? 'auto' : 'smooth',
     });
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -26,7 +27,7 @@ export default function ScrollToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-12 h-12 glass-effect-strong rounded-full flex items-center justify-center text-white hover:shadow-xl transition-all duration-300 border-cyan-400/40 hover:border-cyan-400/80"
+          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full glass text-ink transition-colors duration-300 hover:border-white/35 sm:bottom-8 sm:right-8"
           initial={{ opacity: 0, scale: 0, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0, y: 20 }}
