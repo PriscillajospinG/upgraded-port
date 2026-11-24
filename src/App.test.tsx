@@ -15,9 +15,9 @@ describe('App', () => {
     render(<App />);
 
     // Check for section headings with updated text
-    expect(screen.getByText('About Me')).toBeInTheDocument();
+    expect(screen.getByText('Who Am I?')).toBeInTheDocument();
     expect(screen.getByText('Technical Skills')).toBeInTheDocument();
-    expect(screen.getByText('My Projects')).toBeInTheDocument();
+    expect(screen.getByText('Featured Projects')).toBeInTheDocument();
 
     // Check for contact section (using role since text appears multiple times)
     const contactHeadings = screen.getAllByText('Get In Touch');
