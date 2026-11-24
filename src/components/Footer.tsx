@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="relative py-8 glass-effect-strong border-t border-cyan-400/20">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="text-sm leading-relaxed text-center">
+    <footer className="relative border-t border-line bg-surface py-10">
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="text-center text-[13px] leading-relaxed text-ink-faint">
           © {new Date().getFullYear()}{' '}
-          <span className="text-cyan-400 font-semibold hover:text-sky-400 transition-colors duration-300 cursor-default">
+          <span className="font-medium text-ink-soft transition-colors duration-300 hover:text-ink">
             Priscilla Jospin
           </span>{' '}
           ❤️ All rights reserved.
