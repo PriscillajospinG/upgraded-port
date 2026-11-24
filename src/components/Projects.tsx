@@ -1,8 +1,19 @@
 import { motion } from 'framer-motion';
-import project2 from '../assets/2.png';
+
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+
+// Bento spans on large screens: two wide cards, then three.
+const spans = [
+  'lg:col-span-3',
+  'lg:col-span-3',
+  'lg:col-span-2',
+  'lg:col-span-2',
+  'lg:col-span-2',
+];
+import project2 from '../assets/2.webp';
 import project3 from '../assets/3.jpeg';
-import project4 from '../assets/4.png';
-import project5 from '../assets/5.png';
+import project4 from '../assets/4.webp';
+import project5 from '../assets/5.webp';
 import project6 from '../assets/6.jpeg';
 
 const projects = [
@@ -59,80 +70,76 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-32 relative bg-black/20 text-white overflow-hidden"
+      className="relative overflow-hidden border-t border-line bg-surface py-28 text-ink sm:py-36"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text leading-tight"
-          initial={{ opacity: 0, y: -20 }}
+          className="mb-14 text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1.04] tracking-[-0.045em] text-ink sm:mb-16"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: EASE_OUT }}
+          viewport={{ once: true, amount: 0.5 }}
         >
           Featured Projects
         </motion.h2>
 
-        <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={index}
-              className="group glass-effect-strong rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-cyan-400/60 flex flex-col h-full"
-              initial={{ opacity: 0, y: 15 }}
+              className={`card group flex h-full flex-col overflow-hidden p-2 ${spans[index] ?? 'lg:col-span-2'} ${
+                index === 0 ? 'sm:col-span-2 lg:col-span-3' : ''
+              }`}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
+              transition={{
+                delay: (index % 3) * 0.08,
+                duration: 0.9,
+                ease: EASE_OUT,
+              }}
+              viewport={{ once: true, amount: 0.2 }}
             >
-              {/* Image Container */}
-              <div className="relative h-40 sm:h-56 overflow-hidden bg-gradient-to-br from-cyan-500/20 to-sky-500/20">
+              {/* Image */}
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-surface-raised">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                <h3 className="text-xl sm:text-2xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors mb-2 sm:mb-3">
+              <div className="flex flex-grow flex-col px-4 pb-4 pt-6 sm:px-5">
+                <h3 className="mb-3 text-xl font-medium leading-tight tracking-[-0.03em] text-ink sm:text-2xl">
                   {project.title}
                 </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-grow">
+                <p className="mb-6 flex-grow text-sm leading-relaxed text-ink-muted">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="mb-6 flex flex-wrap gap-2">
                   {project.tech.map(t => (
-                    <span
-                      key={t}
-                      className="px-3 py-1 bg-gradient-to-r from-cyan-500/30 to-sky-500/30 rounded-full text-xs font-medium text-cyan-300 border border-cyan-400/30 backdrop-blur-sm"
-                    >
+                    <span key={t} className="chip">
                       {t}
                     </span>
                   ))}
                 </div>
 
                 {/* Button */}
-                <motion.button
-                  onClick={() =>
-                    window.open(project.link, '_blank', 'noopener,noreferrer')
-                  }
-                  className="w-full px-4 py-2 bg-gradient-to-r from-cyan-600 to-sky-600 text-white font-semibold rounded-lg hover:from-cyan-500 hover:to-sky-500 transition-all duration-300 transform hover:shadow-lg hover:shadow-cyan-500/50"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost w-full"
                 >
                   View Project →
-                </motion.button>
+                </a>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
