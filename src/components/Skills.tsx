@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
 import {
   FaReact,
   FaNodeJs,
@@ -49,74 +51,53 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-32 relative bg-black/20 text-white overflow-hidden"
+      className="relative overflow-hidden border-t border-line bg-surface py-28 text-ink sm:py-36"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="mb-14 flex flex-col justify-between gap-6 sm:mb-16 lg:flex-row lg:items-end"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: EASE_OUT }}
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1.04] tracking-[-0.045em] text-ink">
             Technical Skills
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="max-w-md text-base leading-relaxed text-ink-muted sm:text-lg lg:text-right">
             A comprehensive toolkit for building modern applications and
             intelligent systems
           </p>
         </motion.div>
 
-        {/* Unified Icon Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-4 md:gap-6">
+        {/* Hairline grid: every cell shares one border */}
+        <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-line bg-line gap-px sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className="group"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.3,
-                delay: index * 0.02,
-              }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.08 }}
+              className="group relative flex items-center gap-4 bg-surface px-5 py-6 transition-colors duration-300 hover:bg-surface-card sm:py-7"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: (index % 5) * 0.05 }}
+              viewport={{ once: true, amount: 0.4 }}
             >
-              <div className="flex flex-col items-center">
-                {/* Icon Container */}
-                <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 glass-effect-strong rounded-2xl flex items-center justify-center mb-3 group-hover:border-cyan-400/80 transition-all duration-300 cursor-pointer"
-                  whileHover={{
-                    boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)',
-                  }}
+              {/* Neutral icon by default; brand colour fades in on hover */}
+              <span
+                className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center text-[26px]"
+                aria-hidden="true"
+              >
+                <span className="text-ink-soft transition-opacity duration-300 group-hover:opacity-0">
+                  {skill.icon}
+                </span>
+                <span
+                  className={`absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${skill.color}`}
                 >
-                  <div
-                    className={`text-4xl md:text-5xl ${skill.color} transform group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    {skill.icon}
-                  </div>
-                </motion.div>
-
-                {/* Skill Name Tooltip */}
-                <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, y: 5 }}
-                  whileHover={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <p className="text-xs md:text-sm font-semibold text-slate-200 group-hover:text-cyan-300 transition-colors truncate max-w-[70px]">
-                    {skill.name}
-                  </p>
-                </motion.div>
-              </div>
+                  {skill.icon}
+                </span>
+              </span>
+              <p className="text-sm font-medium tracking-[-0.01em] text-ink-soft transition-colors group-hover:text-ink">
+                {skill.name}
+              </p>
             </motion.div>
           ))}
         </div>
