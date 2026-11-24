@@ -1,128 +1,117 @@
 import { motion } from 'framer-motion';
 import { FaCode, FaBrain, FaRocket, FaLightbulb } from 'react-icons/fa';
 
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+
 export default function About() {
   const features = [
     {
       icon: FaCode,
       title: 'Full Stack Developer',
       description: 'Modern web applications with React, Node.js & TypeScript',
-      gradient: 'from-cyan-600 to-sky-600',
     },
     {
       icon: FaBrain,
       title: 'AI & ML Engineer',
       description: 'Deep learning models using TensorFlow & Python',
-      gradient: 'from-purple-600 to-pink-600',
     },
     {
       icon: FaRocket,
       title: 'Problem Solver',
       description: 'Turning complex challenges into elegant solutions',
-      gradient: 'from-orange-600 to-red-600',
     },
     {
       icon: FaLightbulb,
       title: 'Innovator',
       description: 'Building the future with cutting-edge technologies',
-      gradient: 'from-green-600 to-emerald-600',
     },
   ];
 
   return (
     <section
       id="about"
-      className="relative py-32 bg-black/20 text-white overflow-hidden"
+      className="relative overflow-hidden bg-surface py-28 text-ink sm:py-36"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -right-1/3 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-1/4 -left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-      </div>
+      {/* Soft light from above (static) */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05),transparent_70%)]"
+        aria-hidden="true"
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight">
-            <span className="block text-white mb-2">Who Am I?</span>
-            <span className="block bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              Let me show you
-            </span>
-          </h2>
-          <div className="flex gap-2 justify-center mt-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-sky-500 rounded-full" />
-            <div className="w-2 h-1 bg-slate-600 rounded-full" />
-            <div className="w-2 h-1 bg-slate-600 rounded-full" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
+          {/* Header */}
+          <motion.div
+            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: EASE_OUT }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1.04] tracking-[-0.045em]">
+              <span className="block text-ink">Who Am I?</span>
+              <span className="serif-accent block text-[1.08em]">
+                Let me show you
+              </span>
+            </h2>
+            <div className="mt-8 h-px w-16 bg-white/30" />
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:col-span-7">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="card group relative overflow-hidden p-6 sm:p-7"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: index * 0.08,
+                    duration: 0.8,
+                    ease: EASE_OUT,
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  {/* Top light on hover */}
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(400px_circle_at_50%_0%,rgba(188,208,255,0.08),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative">
+                    <div className="mb-10 flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-ink-soft transition-colors duration-300 group-hover:border-line-strong group-hover:text-ink">
+                      <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                    </div>
+
+                    <h3 className="mb-2 text-lg font-medium tracking-[-0.02em] text-ink">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-ink-muted">
+                      {feature.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
-        </motion.div>
-
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl glass-effect-premium hover:border-cyan-400/50 p-6 transition-all duration-300"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-              >
-                {/* Gradient background on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  <motion.div
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300`}
-                  >
-                    <Icon className="w-6 h-6 text-white" />
-                  </motion.div>
-
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-
-                {/* Border glow effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br from-cyan-500/20 to-sky-500/20" />
-              </motion.div>
-            );
-          })}
         </div>
 
         {/* CTA */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-20 flex flex-col items-start justify-between gap-6 border-t border-line pt-10 sm:flex-row sm:items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.8, ease: EASE_OUT }}
           viewport={{ once: true }}
         >
-          <p className="text-slate-300 text-lg mb-6">
+          <p className="max-w-md text-lg tracking-[-0.015em] text-ink-soft">
             Let's collaborate and build something amazing together
           </p>
-          <motion.a
-            href="#contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-600 to-sky-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <a href="#contact" className="btn btn-solid">
             Start a Conversation
-          </motion.a>
+          </a>
         </motion.div>
       </div>
     </section>
